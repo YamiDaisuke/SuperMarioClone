@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://spritesheets/WorldTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Node" index="0"]
+
+_sections_unfolded = [ "Cell", "Transform" ]
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.419608, 0.54902, 1, 1 )
+_sections_unfolded = [ "Anchor" ]
+
+[node name="TileMap" type="TileMap" parent="." index="1"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 13, 0, 15, 13, 0, 65536, 13, 0, 65551, 13, 0, 131072, 13, 0, 131087, 13, 0, 196608, 13, 0, 196623, 13, 0, 262144, 13, 0, 262159, 13, 0, 327680, 13, 0, 327695, 13, 0, 393216, 135, 0, 393231, 135, 0, 458752, 135, 0, 458767, 135, 0, 524288, 135, 0, 524303, 135, 0, 589824, 135, 0, 589839, 135, 0, 655360, 135, 0, 655375, 135, 0, 720896, 135, 0, 720911, 135, 0, 786432, 135, 0, 786447, 135, 0, 851968, 135, 0, 851983, 135, 0, 917504, 135, 0, 917505, 135, 0, 917506, 135, 0, 917507, 135, 0, 917508, 135, 0, 917509, 135, 0, 917510, 135, 0, 917511, 135, 0, 917512, 135, 0, 917513, 135, 0, 917514, 135, 0, 917515, 135, 0, 917516, 135, 0, 917517, 135, 0, 917518, 135, 0, 917519, 135, 0 )
+
+[node name="Player" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 160, 32 )
+
+

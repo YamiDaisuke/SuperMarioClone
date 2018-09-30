@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/ch.fischspiele.tilesethelper/test_tileset.png" type="Texture" id=1]
+
+[sub_resource type="NavigationPolygon" id=5]
+
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=6]
+
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=7]
+
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=8]
+
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="wall0" type="Sprite" parent="." index="0"]
+
+editor/display_folded = true
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall0" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wall0/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="wall1" type="Sprite" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 16, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 1
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall1" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wall1/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="wall2" type="Sprite" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 32, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 2
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall2" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wall2/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="wall3" type="Sprite" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 48, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2( 48, 0, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall3" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wall3/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="floor4" type="Sprite" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 0, 16 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 4
+region_enabled = true
+region_rect = Rect2( 0, 16, 16, 16 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="floor4" index="0"]
+
+navpoly = SubResource( 5 )
+enabled = true
+
+[node name="floor5" type="Sprite" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 16, 16 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 5
+region_enabled = true
+region_rect = Rect2( 16, 16, 16, 16 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="floor5" index="0"]
+
+navpoly = SubResource( 6 )
+enabled = true
+
+[node name="floor6" type="Sprite" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 32, 16 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 6
+region_enabled = true
+region_rect = Rect2( 32, 16, 16, 16 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="floor6" index="0"]
+
+navpoly = SubResource( 7 )
+enabled = true
+
+[node name="floor7" type="Sprite" parent="." index="7"]
+
+editor/display_folded = true
+position = Vector2( 48, 16 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 7
+region_enabled = true
+region_rect = Rect2( 48, 16, 16, 16 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="floor7" index="0"]
+
+navpoly = SubResource( 8 )
+enabled = true
+
+

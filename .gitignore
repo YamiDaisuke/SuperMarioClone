@@ -1,0 +1,58 @@
+addons/ch.fischspiele.tilesethelper/not_for_export/
+engine.cfg
+icon.png
+.import/
+default_env.tres
+icon.png.import
+project.godot
+
+
+# Created by https://www.gitignore.io/api/godot,macos,visualstudiocode
+
+### Godot ###
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono-specific ignores
+.mono/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+# End of https://www.gitignore.io/api/godot,macos,visualstudiocode

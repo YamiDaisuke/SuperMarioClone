@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://spritesheets/mario/smallmario.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=3]
+[ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=4]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27.2598, 31.8264 )
+
+[sub_resource type="AtlasTexture" id=1]
+
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 288, 288 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Jump"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[node name="Player" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+debug = false
+gravity = 1200.0
+speed = 300
+idle_min_jump_height = 1.2
+idle_max_jump_height = 4.1
+walk_min_jump_height = 4.4
+walk_max_jump_height = 1.4
+run_min_jump_height = 5.1
+run_max_jump_height = 1.5
+jump_button_hold_time = 0.3
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
+
+texture = SubResource( 1 )
+vframes = 4
+hframes = 4
+frame = 5
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Sprite" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Idle = ExtResource( 3 )
+anims/Jump = SubResource( 2 )
+anims/Walk = ExtResource( 4 )
+blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options" ]
+
+
