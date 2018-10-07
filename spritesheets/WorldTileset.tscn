@@ -2,17 +2,18 @@
 
 [ext_resource path="res://spritesheets/world.png" type="Texture" id=1]
 
-[node name="WorldTileset" type="Node2D"]
+[node name="WorldTileset" type="Node2D" index="0"]
 
-[node name="world0" type="Sprite" parent="." index="0"]
+[node name="stone1" type="Sprite" parent="." index="0"]
 
+editor/display_folded = true
 texture = ExtResource( 1 )
 vframes = 28
 hframes = 33
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="world0" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="stone1" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -22,13 +23,14 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world0/StaticBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="stone1/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="world1" type="Sprite" parent="." index="1"]
+[node name="brick_top_1" type="Sprite" parent="." index="1"]
 
+editor/display_folded = true
 position = Vector2( 64, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -37,7 +39,7 @@ frame = 1
 region_enabled = true
 region_rect = Rect2( 64, 0, 64, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="world1" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="brick_top_1" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -47,13 +49,14 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world1/StaticBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick_top_1/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="world2" type="Sprite" parent="." index="2"]
+[node name="brick_1" type="Sprite" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 128, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -62,7 +65,7 @@ frame = 2
 region_enabled = true
 region_rect = Rect2( 128, 0, 64, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="world2" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="brick_1" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -72,13 +75,14 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world2/StaticBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick_1/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="world3" type="Sprite" parent="." index="3"]
+[node name="metal_1" type="Sprite" parent="." index="3"]
 
+editor/display_folded = true
 position = Vector2( 192, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -87,7 +91,7 @@ frame = 3
 region_enabled = true
 region_rect = Rect2( 192, 0, 64, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="world3" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="metal_1" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -97,13 +101,14 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world3/StaticBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="metal_1/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world4" type="Sprite" parent="." index="4"]
 
+editor/display_folded = true
 position = Vector2( 256, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -129,6 +134,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world5" type="Sprite" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( 320, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -154,6 +160,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world6" type="Sprite" parent="." index="6"]
 
+editor/display_folded = true
 position = Vector2( 384, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -179,6 +186,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world7" type="Sprite" parent="." index="7"]
 
+editor/display_folded = true
 position = Vector2( 448, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -204,6 +212,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world8" type="Sprite" parent="." index="8"]
 
+editor/display_folded = true
 position = Vector2( 512, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -229,6 +238,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world9" type="Sprite" parent="." index="9"]
 
+editor/display_folded = true
 position = Vector2( 576, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -254,6 +264,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world10" type="Sprite" parent="." index="10"]
 
+editor/display_folded = true
 position = Vector2( 640, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -279,6 +290,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world11" type="Sprite" parent="." index="11"]
 
+editor/display_folded = true
 position = Vector2( 704, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -304,6 +316,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world12" type="Sprite" parent="." index="12"]
 
+editor/display_folded = true
 position = Vector2( 768, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -329,6 +342,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world13" type="Sprite" parent="." index="13"]
 
+editor/display_folded = true
 position = Vector2( 832, 0 )
 texture = ExtResource( 1 )
 vframes = 28
@@ -17402,7 +17416,7 @@ bounce = 0.0
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="world696" type="Sprite" parent="." index="696"]
+[node name="sky" type="Sprite" parent="." index="696"]
 
 position = Vector2( 192, 1344 )
 texture = ExtResource( 1 )
@@ -17412,7 +17426,7 @@ frame = 696
 region_enabled = true
 region_rect = Rect2( 192, 1344, 64, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="world696" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="sky" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -17422,7 +17436,7 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world696/StaticBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="sky/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
@@ -23079,6 +23093,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="world923" type="Sprite" parent="." index="923"]
 
+editor/display_folded = true
 position = Vector2( 2048, 1728 )
 texture = ExtResource( 1 )
 vframes = 28

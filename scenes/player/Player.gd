@@ -1,5 +1,7 @@
 extends "res://scripts/state_machine.gd"
 
+signal died
+
 const State = preload("res://scripts/state_machine.gd").State
 
 # force makes the player jump about one square
@@ -36,23 +38,22 @@ var velocity = Vector2()
 var jumping = false
 
 # References to child nodes
-var body = null
-var sprite = null
-var animation_player = null
+onready var body = $KinematicBody2D
+onready var sprite = $KinematicBody2D/Sprite
+onready var animation_player = $KinematicBody2D/Sprite/AnimationPlayer
 
 # State const for memory optimzation
-var idle_state = null
-var walk_state = null
-var jump_state = null
+onready var idle_state = Idle.new(self)
+onready var walk_state = Walk.new(self)
+onready var jump_state = Jump.new(self)
+onready var dead_state = Dead.new(self)
+onready var cinematic_cut = CinematicCut.new(self)
 
 
 # Debug
 var info = null
 
 func _ready():
-    body = $KinematicBody2D
-    sprite = $KinematicBody2D/Sprite
-    animation_player = $KinematicBody2D/Sprite/AnimationPlayer
     
     if self.debug:
         var scene = preload("res://scenes/debug_tools/PlayerInfo.tscn")
@@ -60,14 +61,9 @@ func _ready():
         self.body.add_child(self.info)
     
     self.calculate_jump_forces()
-    
-    idle_state = Idle.new(self)
-    walk_state = Walk.new(self)
-    jump_state = Jump.new(self)
-        
     self.change_state(self.idle_state)
-    
     animation_player.play()
+
     
 func calculate_jump_forces():
     self.idle_max_jump_force = Vector2(
@@ -119,6 +115,14 @@ func change_state(new_state):
     if self.debug:
         self.info.set_state_label(new_state.name)
 
+    
+func die():
+    print("Die.....")
+    self.change_state(dead_state)
+    
+
+func start_cinematic_cut():
+    self.change_state(cinematic_cut)
     
 ##### States 
 
@@ -217,3 +221,34 @@ class Jump extends State:
             self.parent.change_state(self.parent.idle_state)
         
         self.parent.body.move_and_slide(velocity)
+
+
+class CinematicCut extends State:
+    
+    func _init(parent).(parent):
+        self.name = "CinematicCut"
+
+
+class Dead extends State:
+    
+    var time = 0
+    var emitted = false
+    
+    func _init(parent).(parent):
+        self.name = "Dead"
+    
+    
+    func on_enter():
+        self.parent.animation_player.current_animation = "Die"
+        time = 0
+        
+    
+    func step(delta):
+        time += delta
+        if time > 1 and not emitted:
+            print("Emitted")
+            emitted = true
+            self.parent.emit_signal("died")
+
+
+###### End states

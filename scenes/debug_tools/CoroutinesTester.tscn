@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/debug_tools/CoroutinesTester.gd" type="Script" id=1]
+
+[node name="CoroutinesTester" type="Node" index="0"]
+
+script = ExtResource( 1 )
+
+
