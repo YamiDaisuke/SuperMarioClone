@@ -6,7 +6,7 @@
 
 [node name="HUD" type="CanvasLayer"]
 
-layer = 1
+layer = 10
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -29,11 +29,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Anchor", "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin", "Theme" ]
 
 [node name="Score" type="Container" parent="Container" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -88,7 +87,7 @@ text = "000000"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Margin", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Margin", "custom_fonts" ]
 
 [node name="Coins" type="Container" parent="Container" index="1"]
 
@@ -105,16 +104,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="Coins" type="Label" parent="Container/Coins" index="0"]
 
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -96.0
-margin_top = -40.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 66.0
+margin_top = 43.0
+margin_right = 162.0
+margin_bottom = 83.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -126,13 +127,13 @@ text = "x00"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Margin", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Margin", "custom_fonts" ]
 
 [node name="Coin" parent="Container/Coins" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 41.8501, 70.7834 )
+position = Vector2( 41.9353, 60.3884 )
 scale = Vector2( 0.75, 0.75 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="World" type="Container" parent="Container" index="2"]
 
@@ -177,6 +178,8 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 43.0
+margin_right = 160.0
+margin_bottom = 83.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -206,7 +209,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="TimeTitle" type="Label" parent="Container/Time" index="0"]
 

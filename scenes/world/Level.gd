@@ -6,7 +6,7 @@ func _ready():
     $HUD.set_time(self.time)
     $HUD.set_score(0)
     $HUD.set_world("0 - 0")
-    $HUD.set_player_namer("FRANK")
+    $HUD.set_player_name("FRANK")
     $HUD.set_coins(0)
     
     $Timer.start()

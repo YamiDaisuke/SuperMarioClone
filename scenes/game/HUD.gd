@@ -1,8 +1,6 @@
 extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+signal hud_ready
 
 var player_name
 var score
@@ -16,9 +14,11 @@ func _ready():
     self.coins = $Container/Coins/Coins
     self.world = $Container/World/World
     self.time = $Container/Time/Time
+    
+    self.emit_signal("hud_ready")
 
 
-func set_player_namer(name):
+func set_player_name(name):
     self.player_name.text = name    
 
 

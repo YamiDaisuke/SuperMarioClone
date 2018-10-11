@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 54, 55, 56, 57 ]
 }
 
-[node name="Coin" type="Node2D"]
+[node name="Coin" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -32,7 +32,7 @@ texture = ExtResource( 2 )
 vframes = 14
 hframes = 9
 frame = 57
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Animation", "Region" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OW" index="0"]
 

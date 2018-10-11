@@ -1,5 +1,6 @@
 extends "res://scripts/state_machine.gd"
 
+signal hit_pole(height)
 signal cinematic_finished
 
 onready var Coroutine = get_node("/root/Coroutines")
@@ -22,6 +23,7 @@ func _on_Area2D_body_entered(body):
     if body.get_parent() is Player:
         var player = body.get_parent()
         self.player_ref = player
+        self.emit_signal("hit_pole", 0.5)
         self.change_state(self.slide_state)
 
 

@@ -1,0 +1,1655 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://spritesheets/world/bricks.png" type="Texture" id=1]
+
+[node name="Bricks" type="Node2D" index="0"]
+
+[node name="bricks0" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks0" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks0/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks1" type="Sprite" parent="." index="1"]
+
+position = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 1
+region_enabled = true
+region_rect = Rect2( 64, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks1" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks1/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks2" type="Sprite" parent="." index="2"]
+
+position = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 2
+region_enabled = true
+region_rect = Rect2( 128, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks2" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks2/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks3" type="Sprite" parent="." index="3"]
+
+position = Vector2( 192, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 3
+region_enabled = true
+region_rect = Rect2( 192, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks3" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks3/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks4" type="Sprite" parent="." index="4"]
+
+position = Vector2( 256, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 4
+region_enabled = true
+region_rect = Rect2( 256, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks4" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks4/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks5" type="Sprite" parent="." index="5"]
+
+position = Vector2( 320, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 5
+region_enabled = true
+region_rect = Rect2( 320, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks5" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks5/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks6" type="Sprite" parent="." index="6"]
+
+position = Vector2( 384, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 6
+region_enabled = true
+region_rect = Rect2( 384, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks6" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks6/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks7" type="Sprite" parent="." index="7"]
+
+position = Vector2( 448, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 7
+region_enabled = true
+region_rect = Rect2( 448, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks7" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks7/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks8" type="Sprite" parent="." index="8"]
+
+position = Vector2( 512, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 8
+region_enabled = true
+region_rect = Rect2( 512, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks8" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks8/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks9" type="Sprite" parent="." index="9"]
+
+position = Vector2( 576, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 9
+region_enabled = true
+region_rect = Rect2( 576, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks9" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks9/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks10" type="Sprite" parent="." index="10"]
+
+position = Vector2( 640, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 10
+region_enabled = true
+region_rect = Rect2( 640, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks10" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks10/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks11" type="Sprite" parent="." index="11"]
+
+position = Vector2( 704, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 11
+region_enabled = true
+region_rect = Rect2( 704, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks11" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks11/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks12" type="Sprite" parent="." index="12"]
+
+position = Vector2( 768, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 12
+region_enabled = true
+region_rect = Rect2( 768, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks12" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks12/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks13" type="Sprite" parent="." index="13"]
+
+position = Vector2( 832, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 13
+region_enabled = true
+region_rect = Rect2( 832, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks13" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks13/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks14" type="Sprite" parent="." index="14"]
+
+position = Vector2( 896, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 14
+region_enabled = true
+region_rect = Rect2( 896, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks14" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks14/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks15" type="Sprite" parent="." index="15"]
+
+position = Vector2( 960, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 15
+region_enabled = true
+region_rect = Rect2( 960, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks15" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks15/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks16" type="Sprite" parent="." index="16"]
+
+position = Vector2( 1024, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 16
+region_enabled = true
+region_rect = Rect2( 1024, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks16" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks16/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks17" type="Sprite" parent="." index="17"]
+
+position = Vector2( 1088, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 17
+region_enabled = true
+region_rect = Rect2( 1088, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks17" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks17/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks18" type="Sprite" parent="." index="18"]
+
+position = Vector2( 1152, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 18
+region_enabled = true
+region_rect = Rect2( 1152, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks18" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks18/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks19" type="Sprite" parent="." index="19"]
+
+position = Vector2( 1216, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 19
+region_enabled = true
+region_rect = Rect2( 1216, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks19" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks19/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks20" type="Sprite" parent="." index="20"]
+
+position = Vector2( 1280, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 20
+region_enabled = true
+region_rect = Rect2( 1280, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks20" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks20/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks21" type="Sprite" parent="." index="21"]
+
+position = Vector2( 1344, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 21
+region_enabled = true
+region_rect = Rect2( 1344, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks21" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks21/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks22" type="Sprite" parent="." index="22"]
+
+position = Vector2( 1408, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 22
+region_enabled = true
+region_rect = Rect2( 1408, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks22" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks22/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks23" type="Sprite" parent="." index="23"]
+
+position = Vector2( 1472, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 23
+region_enabled = true
+region_rect = Rect2( 1472, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks23" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks23/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks24" type="Sprite" parent="." index="24"]
+
+position = Vector2( 1536, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 24
+region_enabled = true
+region_rect = Rect2( 1536, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks24" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks24/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks25" type="Sprite" parent="." index="25"]
+
+position = Vector2( 1600, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 25
+region_enabled = true
+region_rect = Rect2( 1600, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks25" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks25/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks26" type="Sprite" parent="." index="26"]
+
+position = Vector2( 1664, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 26
+region_enabled = true
+region_rect = Rect2( 1664, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks26" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks26/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks27" type="Sprite" parent="." index="27"]
+
+position = Vector2( 1728, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 27
+region_enabled = true
+region_rect = Rect2( 1728, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks27" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks27/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks28" type="Sprite" parent="." index="28"]
+
+position = Vector2( 1792, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 28
+region_enabled = true
+region_rect = Rect2( 1792, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks28" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks28/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks29" type="Sprite" parent="." index="29"]
+
+position = Vector2( 1856, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 29
+region_enabled = true
+region_rect = Rect2( 1856, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks29" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks29/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks30" type="Sprite" parent="." index="30"]
+
+position = Vector2( 1920, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 30
+region_enabled = true
+region_rect = Rect2( 1920, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks30" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks30/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks31" type="Sprite" parent="." index="31"]
+
+position = Vector2( 1984, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 31
+region_enabled = true
+region_rect = Rect2( 1984, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks31" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks31/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks32" type="Sprite" parent="." index="32"]
+
+position = Vector2( 2048, 0 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 32
+region_enabled = true
+region_rect = Rect2( 2048, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks32" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks32/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks33" type="Sprite" parent="." index="33"]
+
+position = Vector2( 0, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 33
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks33" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks33/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks34" type="Sprite" parent="." index="34"]
+
+position = Vector2( 64, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 34
+region_enabled = true
+region_rect = Rect2( 64, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks34" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks34/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks35" type="Sprite" parent="." index="35"]
+
+position = Vector2( 128, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 35
+region_enabled = true
+region_rect = Rect2( 128, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks35" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks35/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks36" type="Sprite" parent="." index="36"]
+
+position = Vector2( 192, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 36
+region_enabled = true
+region_rect = Rect2( 192, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks36" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks36/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks37" type="Sprite" parent="." index="37"]
+
+position = Vector2( 256, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 37
+region_enabled = true
+region_rect = Rect2( 256, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks37" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks37/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks38" type="Sprite" parent="." index="38"]
+
+position = Vector2( 320, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 38
+region_enabled = true
+region_rect = Rect2( 320, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks38" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks38/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks39" type="Sprite" parent="." index="39"]
+
+position = Vector2( 384, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 39
+region_enabled = true
+region_rect = Rect2( 384, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks39" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks39/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks40" type="Sprite" parent="." index="40"]
+
+position = Vector2( 448, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 40
+region_enabled = true
+region_rect = Rect2( 448, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks40" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks40/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks41" type="Sprite" parent="." index="41"]
+
+position = Vector2( 512, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 41
+region_enabled = true
+region_rect = Rect2( 512, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks41" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks41/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks42" type="Sprite" parent="." index="42"]
+
+position = Vector2( 576, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 42
+region_enabled = true
+region_rect = Rect2( 576, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks42" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks42/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks43" type="Sprite" parent="." index="43"]
+
+position = Vector2( 640, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 43
+region_enabled = true
+region_rect = Rect2( 640, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks43" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks43/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks44" type="Sprite" parent="." index="44"]
+
+position = Vector2( 704, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 44
+region_enabled = true
+region_rect = Rect2( 704, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks44" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks44/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks45" type="Sprite" parent="." index="45"]
+
+position = Vector2( 768, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 45
+region_enabled = true
+region_rect = Rect2( 768, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks45" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks45/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks46" type="Sprite" parent="." index="46"]
+
+position = Vector2( 832, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 46
+region_enabled = true
+region_rect = Rect2( 832, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks46" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks46/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks47" type="Sprite" parent="." index="47"]
+
+position = Vector2( 896, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 47
+region_enabled = true
+region_rect = Rect2( 896, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks47" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks47/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks48" type="Sprite" parent="." index="48"]
+
+position = Vector2( 960, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 48
+region_enabled = true
+region_rect = Rect2( 960, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks48" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks48/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks49" type="Sprite" parent="." index="49"]
+
+position = Vector2( 1024, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 49
+region_enabled = true
+region_rect = Rect2( 1024, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks49" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks49/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks50" type="Sprite" parent="." index="50"]
+
+position = Vector2( 1088, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 50
+region_enabled = true
+region_rect = Rect2( 1088, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks50" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks50/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks51" type="Sprite" parent="." index="51"]
+
+position = Vector2( 1152, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 51
+region_enabled = true
+region_rect = Rect2( 1152, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks51" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks51/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks52" type="Sprite" parent="." index="52"]
+
+position = Vector2( 1216, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 52
+region_enabled = true
+region_rect = Rect2( 1216, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks52" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks52/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks53" type="Sprite" parent="." index="53"]
+
+position = Vector2( 1280, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 53
+region_enabled = true
+region_rect = Rect2( 1280, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks53" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks53/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks54" type="Sprite" parent="." index="54"]
+
+position = Vector2( 1344, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 54
+region_enabled = true
+region_rect = Rect2( 1344, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks54" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks54/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks55" type="Sprite" parent="." index="55"]
+
+position = Vector2( 1408, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 55
+region_enabled = true
+region_rect = Rect2( 1408, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks55" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks55/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks56" type="Sprite" parent="." index="56"]
+
+position = Vector2( 1472, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 56
+region_enabled = true
+region_rect = Rect2( 1472, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks56" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks56/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks57" type="Sprite" parent="." index="57"]
+
+position = Vector2( 1536, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 57
+region_enabled = true
+region_rect = Rect2( 1536, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks57" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks57/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks58" type="Sprite" parent="." index="58"]
+
+position = Vector2( 1600, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 58
+region_enabled = true
+region_rect = Rect2( 1600, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks58" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks58/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks59" type="Sprite" parent="." index="59"]
+
+position = Vector2( 1664, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 59
+region_enabled = true
+region_rect = Rect2( 1664, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks59" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks59/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks60" type="Sprite" parent="." index="60"]
+
+position = Vector2( 1728, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 60
+region_enabled = true
+region_rect = Rect2( 1728, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks60" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks60/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks61" type="Sprite" parent="." index="61"]
+
+position = Vector2( 1792, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 61
+region_enabled = true
+region_rect = Rect2( 1792, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks61" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks61/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks62" type="Sprite" parent="." index="62"]
+
+position = Vector2( 1856, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 62
+region_enabled = true
+region_rect = Rect2( 1856, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks62" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks62/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks63" type="Sprite" parent="." index="63"]
+
+position = Vector2( 1920, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 63
+region_enabled = true
+region_rect = Rect2( 1920, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks63" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks63/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks64" type="Sprite" parent="." index="64"]
+
+position = Vector2( 1984, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 64
+region_enabled = true
+region_rect = Rect2( 1984, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks64" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks64/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="bricks65" type="Sprite" parent="." index="65"]
+
+position = Vector2( 2048, 64 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 33
+frame = 65
+region_enabled = true
+region_rect = Rect2( 2048, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bricks65" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bricks65/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+

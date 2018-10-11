@@ -5,6 +5,8 @@ const Player = preload("res://scenes/player/Player.gd")
 
 onready var Coroutines = get_node("/root/Coroutines")
 
+signal finished
+
 onready var idle_state = Idle.new(self)
 onready var walk_state = Walk.new(self)
 
@@ -75,3 +77,4 @@ class Walk extends State:
         
     func on_exit():
         self.player.animation_player.current_animation = "Idle"
+        self.parent.emit_signal("finished")
