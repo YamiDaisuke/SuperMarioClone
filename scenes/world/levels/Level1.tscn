@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/world/levels/Level1.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/world/clouds_sea.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/world/FinishPole.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/world/WalkCinematic.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -174,5 +175,10 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWalk/end" index="0"]
 
 shape = SubResource( 2 )
+
+[node name="DeathZone" parent="." index="7" instance=ExtResource( 8 )]
+
+position = Vector2( 7264, 1056 )
+scale = Vector2( 10.5, 1 )
 
 
