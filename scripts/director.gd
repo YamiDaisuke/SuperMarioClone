@@ -14,7 +14,8 @@ const COIN_GRABBED_FUNC = "_on_coin_grabbed"
 
 var HUD = preload("res://scenes/game/HUD.tscn")
 
-export(int) var new_life_point_limit = 100
+export(int, 100000000) var new_life_point_limit = 100
+export(int, 100000000) var points_per_coin = 200
 
 onready var Coroutines = get_node("/root/Coroutines")
 onready var level_start_scrn = preload("res://scenes/game/LevelStart.tscn")
@@ -22,8 +23,8 @@ onready var timer = Timer.new()
 
 var levels = []
 var lives = 3
-var score = 4540
-var coins = 0
+var score = 4540 setget _set_score
+var coins = 0 setget _set_coins
 var player_status
 
 var current_level = null
@@ -59,7 +60,6 @@ func _ready():
     add_child(timer)
 
 
-
 func start_game():
     var level = levels[0]
     self.current_level = level
@@ -68,12 +68,11 @@ func start_game():
     self.hud_instance.connect("hud_ready", self, "set_hud_data")
     get_tree().get_root().add_child(self.hud_instance)
 
-    self.time_count = level.time
-
     Coroutines.start(self.start_level())
 
 
 func start_level():
+    self.time_count = self.current_level.time
     get_tree().change_scene(self.current_level.scene)
     var start_instance = self.level_start_scrn.instance()
     add_child(start_instance)
@@ -84,6 +83,15 @@ func start_level():
 
     timer.start()
 
+func _set_score(value):
+    score = value
+    self.hud_instance.set_score(self.score)
+
+
+func _set_coins(value):
+    coins = value
+    self.hud_instance.set_coins(self.coins)
+
 
 func set_hud_data():
     # TODO: Player name?
@@ -93,15 +101,15 @@ func set_hud_data():
     self.hud_instance.set_world(self.current_level.name)
     self.hud_instance.set_time(self.current_level.time)
 
+
 func _on_finish_pole_hit(height):
     var points = self.current_level.pole_points * height
     self.score += points
-    self.hud_instance.set_score(self.score)
     self.timer.stop()
+
 
 func _on_player_died():
     self.timer.stop()
-
     self.lives += -1
 
     if self.lives < 0:
@@ -118,7 +126,7 @@ func _on_coin_grabbed(coin):
         self.lives += 1
         self.coins = 0
 
-    self.hud_instance.set_coins(self.coins)
+    self.score += coin.value * self.points_per_coin
     # TODO: Animate?
     coin.queue_free()
 
@@ -137,8 +145,9 @@ func _on_level_finished():
 func _on_timer_timeout():
     self.time_count -= 1
     if self.time_count < 0:
-        # return $Player.die()
         print("End...")
+        self.time_count = 0
+        self._on_player_died()
 
     self.hud_instance.set_time(self.time_count)
 
