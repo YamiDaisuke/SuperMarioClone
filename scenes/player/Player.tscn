@@ -110,7 +110,7 @@ shape = SubResource( 6 )
 texture = SubResource( 2 )
 vframes = 4
 hframes = 4
-frame = 8
+frame = 1
 _sections_unfolded = [ "Animation", "Region", "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Sprite" index="0"]

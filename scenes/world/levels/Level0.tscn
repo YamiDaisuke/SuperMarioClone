@@ -231,8 +231,24 @@ position = Vector2( 11520, 736 )
 
 position = Vector2( 11392, 608 )
 
-[node name="QuestionBox3" parent="." index="20" instance=ExtResource( 10 )]
+[node name="QuestionBox5" parent="." index="20" instance=ExtResource( 10 )]
+
+position = Vector2( 11392, 800 )
+
+[node name="QuestionBox6" parent="." index="21" instance=ExtResource( 10 )]
+
+position = Vector2( 11392, 736 )
+
+[node name="QuestionBox7" parent="." index="22" instance=ExtResource( 10 )]
+
+position = Vector2( 11392, 672 )
+
+[node name="QuestionBox3" parent="." index="23" instance=ExtResource( 10 )]
 
 position = Vector2( 11456, 672 )
+
+[node name="QuestionBox4" parent="." index="24" instance=ExtResource( 10 )]
+
+position = Vector2( 11584, 800 )
 
 

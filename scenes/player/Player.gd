@@ -36,9 +36,6 @@ var walk_min_jump_force = Vector2()
 var run_max_jump_force = Vector2()
 var run_min_jump_force = Vector2()
 
-var velocity = Vector2()
-
-
 # References to child nodes
 onready var body = $KinematicBody2D
 onready var sprite = $KinematicBody2D/Sprite
@@ -48,6 +45,7 @@ onready var animation_player = $KinematicBody2D/Sprite/AnimationPlayer
 onready var idle_state = Idle.new(self)
 onready var walk_state = Walk.new(self)
 onready var jump_state = Jump.new(self)
+onready var fall_state = Fall.new(self)
 onready var dead_state = Dead.new(self)
 onready var cinematic_cut = CinematicCut.new(self)
 
@@ -108,6 +106,16 @@ func get_input_velocity():
     return input_velocity
 
 
+var y_velocity = 0
+func calculate_y_velocity(delta):
+    if self.is_grounded():
+        y_velocity = 0
+        return 0
+    else:
+        y_velocity += self.gravity * delta
+        return y_velocity
+
+
 func is_grounded():
     return self.body.test_move(self.body.global_transform, Vector2(0, 1))
 
@@ -119,7 +127,6 @@ func change_state(new_state):
 
 
 func die():
-    print("Die.....")
     self.change_state(dead_state)
 
 
@@ -146,14 +153,20 @@ class Idle extends State:
     func physics_step(delta):
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
+            return
 
         var velocity = self.parent.get_input_velocity()
-        velocity.y = self.parent.gravity
+        velocity.y = self.parent.calculate_y_velocity(delta)
 
         self.parent.body.move_and_slide(velocity, NORMAL)
 
         if velocity.x != 0:
             self.parent.change_state(self.parent.walk_state)
+            return
+            
+        # TODO: Avoid horizontal movement
+        if not self.parent.is_grounded():
+            self.parent.change_state(self.parent.fall_state)
 
 
 class Walk extends State:
@@ -167,15 +180,21 @@ class Walk extends State:
     func physics_step(delta):
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
+            return
 
         var velocity = self.parent.get_input_velocity()
-        velocity.y = self.parent.gravity
+        velocity.y = self.parent.calculate_y_velocity(delta)
 
         if velocity.x != 0:
             self.parent.sprite.flip_h = velocity.x < 0
             self.parent.body.move_and_slide(velocity, NORMAL)
         else:
             self.parent.change_state(self.parent.idle_state)
+            return
+            
+        # TODO: Avoid horizontal movement
+        if not self.parent.is_grounded():
+            self.parent.change_state(self.parent.fall_state)
 
 
 class Jump extends State:
@@ -231,14 +250,44 @@ class Jump extends State:
         var collision = self.parent.body.move_and_collide(velocity * delta)
         if collision:
             var object = collision.collider.get_parent()
-            if object.is_in_group("bricks") and collision.normal.y == 1:
-                object.hitted(collision.normal)
-                # Make this hit the highest point in the jump, so the player start
-                # falling after hit a brick from down
-                total_time = (0 - target_jump_force.y) / self.parent.gravity
+            if object.is_in_group("bricks"):
+                if collision.normal.y == 1:
+                    object.hitted(collision.normal)
+                    # Make this hit the highest point in the jump, so the player start
+                    # falling after hit a brick from down
+                    total_time = (0 - target_jump_force.y) / self.parent.gravity
+                else:
+                    self.parent.body.move_and_slide(velocity)
 
 
+class Fall extends State:
 
+    var velocity = Vector2()
+    var x_move_time = 0.5
+    # How long can the player move horizontally after start falling
+    var x_move_threshold = 0.5
+
+    func _init(parent).(parent):
+        self.name = "Fall"
+
+    func on_enter():
+        self.parent.animation_player.current_animation = "Jump"
+        self.x_move_time = self.x_move_threshold
+
+    func physics_step(delta):
+        self.x_move_time -= delta
+        var velocity = self.parent.get_input_velocity()
+        velocity.y = self.parent.calculate_y_velocity(delta)
+
+        if velocity.x != 0:
+            self.parent.sprite.flip_h = velocity.x < 0
+        
+        var x_movement_allowed = max(self.x_move_time / self.x_move_threshold, 0)
+        velocity.x *= x_movement_allowed
+        self.parent.body.move_and_slide(velocity, NORMAL)
+            
+        if self.parent.is_grounded():
+            self.parent.change_state(self.parent.idle_state)
 
 
 
@@ -265,7 +314,6 @@ class Dead extends State:
     func step(delta):
         time += delta
         if time > 1 and not emitted:
-            print("Emitted")
             emitted = true
             self.parent.emit_signal("died")
 

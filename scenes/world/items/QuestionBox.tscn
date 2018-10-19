@@ -33,6 +33,8 @@ extents = Vector2( 32, 32 )
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "collision" ]
+bounce_time = 0.15
+bounce_force = Vector2( 0, 550 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
