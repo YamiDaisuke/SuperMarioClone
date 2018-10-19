@@ -2,7 +2,10 @@ extends "res://scripts/state_machine.gd"
 
 signal died
 
+const NORMAL = Vector2(0, -1)
+
 const State = preload("res://scripts/state_machine.gd").State
+const QuestionBox = preload("res://scenes/world/items/QuestionBox.gd")
 
 # force makes the player jump about one square
 const ONE_SQUARE_JUMP_FORCE = 195.12
@@ -35,7 +38,6 @@ var run_min_jump_force = Vector2()
 
 var velocity = Vector2()
 
-var jumping = false
 
 # References to child nodes
 onready var body = $KinematicBody2D
@@ -54,42 +56,42 @@ onready var cinematic_cut = CinematicCut.new(self)
 var info = null
 
 func _ready():
-    
+
     if self.debug:
         var scene = preload("res://scenes/debug_tools/PlayerInfo.tscn")
         self.info = scene.instance()
         self.body.add_child(self.info)
-    
+
     self.calculate_jump_forces()
     self.change_state(self.idle_state)
     animation_player.play()
 
-    
+
 func calculate_jump_forces():
     self.idle_max_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.idle_max_jump_height
     )
     self.idle_min_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.idle_min_jump_height
     )
-    
+
     self.walk_max_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.walk_max_jump_height
     )
     self.walk_min_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.walk_min_jump_height
     )
-    
+
     self.run_max_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.run_max_jump_height
     )
     self.run_min_jump_force = Vector2(
-        0, 
+        0,
         -ONE_SQUARE_JUMP_FORCE * self.run_min_jump_height
     )
 
@@ -108,85 +110,91 @@ func get_input_velocity():
 
 func is_grounded():
     return self.body.test_move(self.body.global_transform, Vector2(0, 1))
-    
+
 
 func change_state(new_state):
     .change_state(new_state)
     if self.debug:
         self.info.set_state_label(new_state.name)
 
-    
+
 func die():
     print("Die.....")
     self.change_state(dead_state)
-    
+
 
 func start_cinematic_cut():
     self.change_state(cinematic_cut)
-    
-##### States 
+
+
+# func _process(delta):
+#     ._process(delta)
+#     print("On Floor? %s" % self.body.is_on_floor())
+#     print("On Ceiling? %s" % self.body.is_on_ceiling())
+#     print("On Wall? %s" % self.body.is_on_wall())
+
+##### States
 
 class Idle extends State:
-    
+
     func _init(parent).(parent):
         self.name = "Idle"
-    
+
     func on_enter():
         self.parent.animation_player.current_animation = "Idle"
-        
+
     func physics_step(delta):
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
-            
+
         var velocity = self.parent.get_input_velocity()
         velocity.y = self.parent.gravity
-        
-        self.parent.body.move_and_slide(velocity)
-        
+
+        self.parent.body.move_and_slide(velocity, NORMAL)
+
         if velocity.x != 0:
             self.parent.change_state(self.parent.walk_state)
 
 
 class Walk extends State:
-    
+
     func _init(parent).(parent):
         self.name = "Walk"
-    
+
     func on_enter():
         self.parent.animation_player.current_animation = "Walk"
-        
+
     func physics_step(delta):
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
-        
+
         var velocity = self.parent.get_input_velocity()
         velocity.y = self.parent.gravity
-        
+
         if velocity.x != 0:
             self.parent.sprite.flip_h = velocity.x < 0
-            self.parent.body.move_and_slide(velocity)
+            self.parent.body.move_and_slide(velocity, NORMAL)
         else:
             self.parent.change_state(self.parent.idle_state)
-    
+
 
 class Jump extends State:
-    
+
     var velocity = Vector2()
-    var jumpSpeed = Vector2() 
-    
+
     var total_time = 0
     var button_hold_time = 0
-    
+
     func _init(parent).(parent):
         self.name = "Jump"
-    
+
     func on_enter():
         self.parent.animation_player.current_animation = "Jump"
         self.velocity = self.parent.idle_max_jump_force
         self.total_time = 0
         self.button_hold_time = 0
-        
-        
+
+
     """
     x = vx * t
     vx = vxi
@@ -197,16 +205,16 @@ class Jump extends State:
     R = (vi^2 * sin (2*a)) / g
     """
     func physics_step(delta):
-        
+
         var input_velocity = self.parent.get_input_velocity()
         self.velocity.x = input_velocity.x
-        
+
         if Input.is_action_pressed("a_button"):
             self.button_hold_time = min(
                 self.button_hold_time + delta,
                 self.parent.jump_button_hold_time
             ) / self.parent.jump_button_hold_time
-        
+
         var target_jump_force = self.parent.idle_min_jump_force \
                 .linear_interpolate(
                     self.parent.idle_max_jump_force,
@@ -219,30 +227,41 @@ class Jump extends State:
         elif self.total_time > 0:
             self.velocity.y = self.parent.gravity
             self.parent.change_state(self.parent.idle_state)
-        
-        self.parent.body.move_and_slide(velocity)
+
+        var collision = self.parent.body.move_and_collide(velocity * delta)
+        if collision:
+            var object = collision.collider.get_parent()
+            if object.is_in_group("bricks") and collision.normal.y == 1:
+                object.hitted(collision.normal)
+                # Make this hit the highest point in the jump, so the player start
+                # falling after hit a brick from down
+                total_time = (0 - target_jump_force.y) / self.parent.gravity
+
+
+
+
 
 
 class CinematicCut extends State:
-    
+
     func _init(parent).(parent):
         self.name = "CinematicCut"
 
 
 class Dead extends State:
-    
+
     var time = 0
     var emitted = false
-    
+
     func _init(parent).(parent):
         self.name = "Dead"
-    
-    
+
+
     func on_enter():
         self.parent.animation_player.current_animation = "Die"
         time = 0
-        
-    
+
+
     func step(delta):
         time += delta
         if time > 1 and not emitted:

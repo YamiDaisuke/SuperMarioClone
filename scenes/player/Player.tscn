@@ -5,10 +5,10 @@
 [ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 27.2598, 31.8264 )
+extents = Vector2( 27.2598, 29.6144 )
 
 [sub_resource type="AtlasTexture" id=2]
 
@@ -78,7 +78,7 @@ tracks/0/keys = {
 [node name="Player" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "collision" ]
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -97,13 +97,13 @@ jump_button_hold_time = 0.3
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 14
 collision/safe_margin = 0.08
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 

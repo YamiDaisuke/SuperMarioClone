@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/world/levels/Level0.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/world/clouds_sea.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/world/WalkCinematic.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/world/items/Coin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,7 +21,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Level1-1" type="Node" index="0"]
+[node name="Level1-1" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -185,51 +186,53 @@ scale = Vector2( 16, 1.5 )
 [node name="Coin" parent="." index="8" instance=ExtResource( 9 )]
 
 position = Vector2( 11648, 864 )
-value = 1
 
 [node name="Coin2" parent="." index="9" instance=ExtResource( 9 )]
 
 position = Vector2( 11232, 864 )
-value = 1
 
 [node name="Coin3" parent="." index="10" instance=ExtResource( 9 )]
 
 position = Vector2( 11296, 864 )
-value = 1
 
 [node name="Coin4" parent="." index="11" instance=ExtResource( 9 )]
 
 position = Vector2( 11360, 864 )
-value = 1
 
 [node name="Coin5" parent="." index="12" instance=ExtResource( 9 )]
 
 position = Vector2( 11840, 864 )
-value = 1
 
 [node name="Coin6" parent="." index="13" instance=ExtResource( 9 )]
 
 position = Vector2( 11776, 864 )
-value = 1
 
 [node name="Coin7" parent="." index="14" instance=ExtResource( 9 )]
 
 position = Vector2( 11712, 864 )
-value = 1
 
 [node name="Coin8" parent="." index="15" instance=ExtResource( 9 )]
 
 position = Vector2( 11424, 864 )
-value = 1
 
 [node name="Coin9" parent="." index="16" instance=ExtResource( 9 )]
 
 position = Vector2( 11584, 864 )
-value = 1
 
 [node name="Coin10" parent="." index="17" instance=ExtResource( 9 )]
 
 position = Vector2( 11488, 864 )
-value = 1
+
+[node name="QuestionBox" parent="." index="18" instance=ExtResource( 10 )]
+
+position = Vector2( 11520, 736 )
+
+[node name="QuestionBox2" parent="." index="19" instance=ExtResource( 10 )]
+
+position = Vector2( 11392, 608 )
+
+[node name="QuestionBox3" parent="." index="20" instance=ExtResource( 10 )]
+
+position = Vector2( 11456, 672 )
 
 
