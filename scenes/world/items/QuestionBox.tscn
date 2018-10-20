@@ -38,7 +38,6 @@ bounce_force = Vector2( 0, 550 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1

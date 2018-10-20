@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/world/items/Brick.gd" type="Script" id=1]
+[ext_resource path="res://spritesheets/world/bricks.png" type="Texture" id=2]
+[ext_resource path="res://spritesheets/world/brick_particle.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 31.9792, 32.0214 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 32.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+angular_velocity = 45.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.0
+radial_accel = 90.0
+radial_accel_random = 1.0
+tangential_accel = 60.0
+tangential_accel_random = 1.0
+damping = 0.0
+damping_random = 0.0
+angle = 90.0
+angle_random = 1.0
+scale = 0.1
+scale_random = 0.4
+color = Color( 0.607843, 0.290196, 0.0666667, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Resource", "Scale", "Spread" ]
+
+[node name="Brick" type="Node2D" index="0" groups=[
+"bricks",
+]]
+
+script = ExtResource( 1 )
+bounce_time = 0.15
+bounce_force = Vector2( 0, 550 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
+
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="KinematicBody2D" index="2"]
+
+emitting = false
+amount = 16
+lifetime = 5.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+

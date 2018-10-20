@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/world/levels/Level0.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/world/clouds_sea.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/world/items/Coin.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -250,5 +251,9 @@ position = Vector2( 11456, 672 )
 [node name="QuestionBox4" parent="." index="24" instance=ExtResource( 10 )]
 
 position = Vector2( 11584, 800 )
+
+[node name="Brick" parent="." index="25" instance=ExtResource( 11 )]
+
+position = Vector2( 11232, 736 )
 
 
