@@ -203,6 +203,11 @@ class Jump extends State:
 
     var total_time = 0
     var button_hold_time = 0
+    
+    var x_move_time = 0.6
+    # How long can the player move horizontally after start falling
+    var x_move_threshold = 0.6
+    var x_direction_locked = false
 
     func _init(parent).(parent):
         self.name = "Jump"
@@ -212,6 +217,8 @@ class Jump extends State:
         self.velocity = self.parent.idle_max_jump_force
         self.total_time = 0
         self.button_hold_time = 0
+        self.x_direction_locked = false
+        self.x_move_time = self.x_move_threshold
 
 
     """
@@ -224,9 +231,22 @@ class Jump extends State:
     R = (vi^2 * sin (2*a)) / g
     """
     func physics_step(delta):
+        
 
         var input_velocity = self.parent.get_input_velocity()
         self.velocity.x = input_velocity.x
+
+        if self.velocity.x < 0 or self.x_direction_locked:
+            
+            if not self.velocity.x < 0:
+                self.velocity.x *= -1
+            
+            self.x_direction_locked = true
+            self.x_move_time -= delta            
+            var x_movement_allowed = max(
+                self.x_move_time / self.x_move_threshold, 0)
+            self.velocity.x *= x_movement_allowed
+        
 
         if Input.is_action_pressed("a_button"):
             self.button_hold_time = min(

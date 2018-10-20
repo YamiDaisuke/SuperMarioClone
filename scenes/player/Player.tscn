@@ -75,7 +75,7 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "collision" ]
