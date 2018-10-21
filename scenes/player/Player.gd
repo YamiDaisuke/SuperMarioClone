@@ -206,6 +206,8 @@ class Jump extends State:
     var x_move_threshold = 0.6
     var x_direction_locked = false
 
+    var direction = false
+
     func _init(parent).(parent):
         self.name = "Jump"
 
@@ -216,6 +218,11 @@ class Jump extends State:
         self.button_hold_time = 0
         self.x_direction_locked = false
         self.x_move_time = self.x_move_threshold
+        #self.parent.sprite.flip_h = velocity.x < 0
+        if self.parent.sprite.flip_h:
+            self.direction = -1
+        else:
+            self.direction = 1
 
 
     """
@@ -233,9 +240,9 @@ class Jump extends State:
         var input_velocity = self.parent.get_input_velocity()
         self.velocity.x = input_velocity.x
 
-        if self.velocity.x < 0 or self.x_direction_locked:
+        if sign(self.velocity.x) != direction or self.x_direction_locked:
 
-            if not self.velocity.x < 0:
+            if sign(self.velocity.x) == direction:
                 self.velocity.x *= -1
 
             self.x_direction_locked = true
