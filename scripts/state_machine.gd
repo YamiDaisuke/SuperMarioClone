@@ -1,5 +1,10 @@
 extends Node2D
 
+const UP_NORMAL = Vector2(0,-1)
+const DOWN_NORMAL = Vector2(0,1)
+const LEFT_NORMAL = Vector2(-1,0)
+const RIGHT_NORMAL = Vector2(1,0)
+
 var current_state = null
 
 func change_state(new_state):

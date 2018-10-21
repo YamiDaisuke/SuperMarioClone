@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/world/levels/Level0.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/world/clouds_sea.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/world/items/Coin.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -84,7 +85,8 @@ position = Vector2( 12768, 544 )
 
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 12000, 864 )
+position = Vector2( 64, 864 )
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "collision" ]
 
 [node name="Castle" type="Node2D" parent="." index="5"]
 
@@ -226,7 +228,8 @@ position = Vector2( 11488, 864 )
 
 [node name="QuestionBox" parent="." index="18" instance=ExtResource( 10 )]
 
-position = Vector2( 11520, 736 )
+position = Vector2( 640, 736 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="QuestionBox2" parent="." index="19" instance=ExtResource( 10 )]
 
@@ -255,5 +258,9 @@ position = Vector2( 11584, 800 )
 [node name="Brick" parent="." index="25" instance=ExtResource( 11 )]
 
 position = Vector2( 11232, 736 )
+
+[node name="Goomba" parent="." index="26" instance=ExtResource( 12 )]
+
+position = Vector2( 2112, 864 )
 
 

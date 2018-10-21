@@ -1,10 +1,5 @@
 extends "res://scripts/state_machine.gd"
 
-const UP_NORMAL = Vector2(0,-1)
-const DOWN_NORMAL = Vector2(0,1)
-const LEFT_NORMAL = Vector2(-1,0)
-const RIGHT_NORMAL = Vector2(1,0)
-
 const State = preload("res://scripts/state_machine.gd").State
 
 export (float) var bounce_time = 0.15

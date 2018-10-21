@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=4]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 27.2598, 29.6144 )
@@ -75,7 +75,9 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[node name="Player" type="Node2D" index="0"]
+[node name="Player" type="Node2D" groups=[
+"player",
+]]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "collision" ]
@@ -103,7 +105,7 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 

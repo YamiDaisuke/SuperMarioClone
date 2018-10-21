@@ -2,10 +2,7 @@ extends "res://scripts/state_machine.gd"
 
 signal died
 
-const NORMAL = Vector2(0, -1)
-
 const State = preload("res://scripts/state_machine.gd").State
-const QuestionBox = preload("res://scenes/world/items/QuestionBox.gd")
 
 # force makes the player jump about one square
 const ONE_SQUARE_JUMP_FORCE = 195.12
@@ -158,12 +155,12 @@ class Idle extends State:
         var velocity = self.parent.get_input_velocity()
         velocity.y = self.parent.calculate_y_velocity(delta)
 
-        self.parent.body.move_and_slide(velocity, NORMAL)
+        self.parent.body.move_and_slide(velocity, UP_NORMAL)
 
         if velocity.x != 0:
             self.parent.change_state(self.parent.walk_state)
             return
-            
+
         # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
             self.parent.change_state(self.parent.fall_state)
@@ -187,11 +184,11 @@ class Walk extends State:
 
         if velocity.x != 0:
             self.parent.sprite.flip_h = velocity.x < 0
-            self.parent.body.move_and_slide(velocity, NORMAL)
+            self.parent.body.move_and_slide(velocity, UP_NORMAL)
         else:
             self.parent.change_state(self.parent.idle_state)
             return
-            
+
         # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
             self.parent.change_state(self.parent.fall_state)
@@ -203,7 +200,7 @@ class Jump extends State:
 
     var total_time = 0
     var button_hold_time = 0
-    
+
     var x_move_time = 0.6
     # How long can the player move horizontally after start falling
     var x_move_threshold = 0.6
@@ -231,22 +228,22 @@ class Jump extends State:
     R = (vi^2 * sin (2*a)) / g
     """
     func physics_step(delta):
-        
+
 
         var input_velocity = self.parent.get_input_velocity()
         self.velocity.x = input_velocity.x
 
         if self.velocity.x < 0 or self.x_direction_locked:
-            
+
             if not self.velocity.x < 0:
                 self.velocity.x *= -1
-            
+
             self.x_direction_locked = true
-            self.x_move_time -= delta            
+            self.x_move_time -= delta
             var x_movement_allowed = max(
                 self.x_move_time / self.x_move_threshold, 0)
             self.velocity.x *= x_movement_allowed
-        
+
 
         if Input.is_action_pressed("a_button"):
             self.button_hold_time = min(
@@ -271,13 +268,18 @@ class Jump extends State:
         if collision:
             var object = collision.collider.get_parent()
             if object.is_in_group("bricks"):
-                if collision.normal.y == 1:
+                if collision.normal == DOWN_NORMAL:
                     object.hitted(collision.normal)
                     # Make this hit the highest point in the jump, so the player start
                     # falling after hit a brick from down
                     total_time = (0 - target_jump_force.y) / self.parent.gravity
                 else:
                     self.parent.body.move_and_slide(velocity)
+
+            if object.is_in_group("enemies"):
+                print("Enemy??? %s" % collision.normal)
+                if collision.normal == UP_NORMAL:
+                    object.hitted(collision.normal)
 
 
 class Fall extends State:
@@ -301,11 +303,11 @@ class Fall extends State:
 
         if velocity.x != 0:
             self.parent.sprite.flip_h = velocity.x < 0
-        
+
         var x_movement_allowed = max(self.x_move_time / self.x_move_threshold, 0)
         velocity.x *= x_movement_allowed
-        self.parent.body.move_and_slide(velocity, NORMAL)
-            
+        self.parent.body.move_and_slide(velocity, UP_NORMAL)
+
         if self.parent.is_grounded():
             self.parent.change_state(self.parent.idle_state)
 
