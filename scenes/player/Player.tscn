@@ -99,7 +99,7 @@ jump_button_hold_time = 0.3
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 14
+collision_mask = 46
 collision/safe_margin = 0.08
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 
@@ -136,10 +136,10 @@ anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
+limit_left = 0
+limit_top = 32
 limit_right = 10000000
-limit_bottom = 1000
+limit_bottom = 0
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
