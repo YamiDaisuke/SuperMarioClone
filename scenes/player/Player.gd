@@ -206,7 +206,9 @@ class Jump extends State:
     var x_move_threshold = 0.6
     var x_direction_locked = false
 
-    var direction = false
+    var direction = 1
+
+    var cancel_x_move = false
 
     func _init(parent).(parent):
         self.name = "Jump"
@@ -214,6 +216,7 @@ class Jump extends State:
     func on_enter():
         self.parent.animation_player.current_animation = "Jump"
         self.velocity = self.parent.idle_max_jump_force
+        self.cancel_x_move = false
         self.total_time = 0
         self.button_hold_time = 0
         self.x_direction_locked = false
@@ -236,20 +239,22 @@ class Jump extends State:
     """
     func physics_step(delta):
 
+        if not self.cancel_x_move:
+            var input_velocity = self.parent.get_input_velocity()
+            self.velocity.x = input_velocity.x
+            var vel_sign = 1 if sign(self.velocity.x) == 0 else sign(self.velocity.x)
+            if vel_sign != direction or self.x_direction_locked:
 
-        var input_velocity = self.parent.get_input_velocity()
-        self.velocity.x = input_velocity.x
+                if sign(self.velocity.x) == direction:
+                    self.velocity.x *= -1
 
-        if sign(self.velocity.x) != direction or self.x_direction_locked:
-
-            if sign(self.velocity.x) == direction:
-                self.velocity.x *= -1
-
-            self.x_direction_locked = true
-            self.x_move_time -= delta
-            var x_movement_allowed = max(
-                self.x_move_time / self.x_move_threshold, 0)
-            self.velocity.x *= x_movement_allowed
+                self.x_direction_locked = true
+                self.x_move_time -= delta
+                var x_movement_allowed = max(
+                    self.x_move_time / self.x_move_threshold, 0)
+                self.velocity.x *= x_movement_allowed
+        else:
+            self.velocity.x = 0
 
 
         if Input.is_action_pressed("a_button"):
@@ -269,24 +274,34 @@ class Jump extends State:
             velocity.y = target_jump_force.y + self.parent.gravity * total_time
         elif self.total_time > 0:
             self.velocity.y = self.parent.gravity
-            self.parent.change_state(self.parent.idle_state)
+            return self.parent.change_state(self.parent.idle_state)
 
         var collision = self.parent.body.move_and_collide(velocity * delta)
         if collision:
             var object = collision.collider.get_parent()
+
             if object.is_in_group("bricks"):
                 if collision.normal == DOWN_NORMAL:
                     object.hitted(collision.normal)
+
                     # Make this hit the highest point in the jump, so the player start
-                    # falling after hit a brick from down
+                    # falling after hit any obstacle
                     total_time = (0 - target_jump_force.y) / self.parent.gravity
                 else:
-                    self.parent.body.move_and_slide(velocity)
+                    self.parent.slide_reminder(self.parent.body, collision)
 
-            if object.is_in_group("enemies"):
+            elif object.is_in_group("enemies"):
                 print("Enemy??? %s" % collision.normal)
                 if collision.normal == UP_NORMAL:
                     object.hitted(collision.normal)
+            else:
+                # Non interactable items should just slide?
+                self.parent.slide_reminder(self.parent.body, collision)
+            self.cancel_x_move = collision.normal != UP_NORMAL
+        else:
+            self.cancel_x_move = false
+
+
 
 
 class Fall extends State:
