@@ -30,6 +30,15 @@ func _physics_process(delta):
     if current_state != null:
         current_state.physics_step(delta)
 
+# Utilities to avoid duplicate code
+
+# Move a body, with the reminder after a coliision
+func slide_reminder(body, collision):
+    var r = collision.remainder
+    var n = collision.normal
+    var nm = r.slide(n)
+    body.move_and_collide(nm)
+
 class State:
     var name = "Base State"
     var parent = null
