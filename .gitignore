@@ -4,7 +4,8 @@ icon.png
 .import/
 default_env.tres
 icon.png.import
-project.godot
+# Ignore or not ignore, thats the question?
+# project.godot
 
 
 # Created by https://www.gitignore.io/api/godot,macos,visualstudiocode
