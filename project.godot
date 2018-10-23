@@ -1,0 +1,58 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="SuperMarioBros"
+run/main_scene="res://scenes/game/StartScreen.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Coroutines="*res://scripts/coroutines.gd"
+Director="*res://scripts/director.gd"
+
+[display]
+
+window/size/height=960
+window/size/test_width=341
+window/size/test_height=320
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+window/stretch/shrink="1"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "ch.fischspiele.tilesethelper" )
+
+[input]
+
+a_button=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+b_button=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+
+[layer]
+
+"Print Fps"=false
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="items"
+2d_physics/layer_4="world"
+2d_physics/layer_5="background"
+2d_physics/layer_6="platforms"
+
+[rendering]
+
+quality/2d/use_pixel_snap=true
+environment/default_environment="res://default_env.tres"
