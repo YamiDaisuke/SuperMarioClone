@@ -291,7 +291,6 @@ class Jump extends State:
                     self.parent.slide_reminder(self.parent.body, collision)
 
             elif object.is_in_group("enemies"):
-                print("Enemy??? %s" % collision.normal)
                 if collision.normal == UP_NORMAL:
                     object.hitted(collision.normal)
             else:
