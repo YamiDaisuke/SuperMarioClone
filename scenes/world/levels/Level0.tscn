@@ -8,10 +8,10 @@
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/world/WalkCinematic.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/world/platforms/Pipe.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/world/platforms/Pipe.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -23,7 +23,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Level1-1" type="Node"]
+[node name="Level1-1" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -186,11 +186,7 @@ shape = SubResource( 2 )
 position = Vector2( 6656, 1040 )
 scale = Vector2( 16, 1.5 )
 
-[node name="Goomba" parent="." index="8" instance=ExtResource( 9 )]
-
-position = Vector2( 2112, 864 )
-
-[node name="Section1" type="Node2D" parent="." index="9"]
+[node name="Section1" type="Node2D" parent="." index="8"]
 
 editor/display_folded = true
 
@@ -198,17 +194,17 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 10 )]
+[node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 9 )]
 
 position = Vector2( 1312, 672 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 10 )]
+[node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 9 )]
 
 position = Vector2( 1440, 672 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Brick3" parent="Section1/Bricks" index="2" instance=ExtResource( 10 )]
+[node name="Brick3" parent="Section1/Bricks" index="2" instance=ExtResource( 9 )]
 
 position = Vector2( 1568, 672 )
 _sections_unfolded = [ "Transform" ]
@@ -217,45 +213,50 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 
-[node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 11 )]
+[node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 1056, 672 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="QuestionBox2" parent="Section1/Boxes" index="1" instance=ExtResource( 11 )]
+[node name="QuestionBox2" parent="Section1/Boxes" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 1376, 672 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="QuestionBox3" parent="Section1/Boxes" index="2" instance=ExtResource( 11 )]
+[node name="QuestionBox3" parent="Section1/Boxes" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 1504, 672 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="QuestionBox4" parent="Section1/Boxes" index="3" instance=ExtResource( 11 )]
+[node name="QuestionBox4" parent="Section1/Boxes" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 1440, 416 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="Pipes" type="Node2D" parent="Section1" index="2"]
 
-[node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 12 )]
+[node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 1856, 832 )
 
-[node name="Pipe2" parent="Section1/Pipes" index="1" instance=ExtResource( 12 )]
+[node name="Pipe2" parent="Section1/Pipes" index="1" instance=ExtResource( 11 )]
 
 position = Vector2( 2496, 768 )
 height = 2
 
-[node name="Pipe3" parent="Section1/Pipes" index="2" instance=ExtResource( 12 )]
+[node name="Pipe3" parent="Section1/Pipes" index="2" instance=ExtResource( 11 )]
 
 position = Vector2( 3008, 704 )
 height = 3
 
-[node name="Pipe4" parent="Section1/Pipes" index="3" instance=ExtResource( 12 )]
+[node name="Pipe4" parent="Section1/Pipes" index="3" instance=ExtResource( 11 )]
 
 position = Vector2( 3712, 704 )
 height = 3
+
+[node name="Goomba" parent="." index="9" instance=ExtResource( 12 )]
+
+position = Vector2( 2112, 864 )
+_sections_unfolded = [ "Transform" ]
 
 
