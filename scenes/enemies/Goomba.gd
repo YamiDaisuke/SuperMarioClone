@@ -1,10 +1,13 @@
 extends "res://scripts/state_machine.gd"
 
 const State = preload("res://scripts/state_machine.gd").State
-const Player = preload("res://scenes/player/Player.gd")
+
+# This should  be an enum but godot is not
+# allowing negative numbers
+export (int) var direction = -1
 
 export (float) var trigger_distance = 64 * 18
-export (Vector2) var walk_speed = Vector2(-150,0)
+export (Vector2) var walk_speed = Vector2(150,0)
 
 onready var animation_player = $KinematicBody2D/AnimationPlayer
 onready var collider_animation = $KinematicBody2D/CollisionShape2D/AnimationPlayer
@@ -23,13 +26,17 @@ func hitted(normal):
     self.change_state(self.die_state)
 
 func _on_Trigger_body_entered(body):
-    if body.get_parent() is Player:
+    if body.get_parent().is_in_group("player"):
         self.change_state(self.walk_state)
 
 
-func _on_VisibilityNotifier2D_screen_exited():
-    self.change_state(self.idle_state)
-    self.queue_free()
+# TODO: Replace this with an exit collider :D
+# func _on_VisibilityNotifier2D_screen_exited():
+    # Only kill this element if is moving left
+    # if self.direction == -1:
+    #     self.change_state(self.idle_state)
+    #     self.queue_free()
+
 
 
 class Idle extends State:
@@ -52,12 +59,15 @@ class Walk extends State:
 
 
     func physics_step(delta):
-        var collision = self.parent.body.move_and_collide(self.parent.walk_speed * delta)
+        var collision = self.parent.body.move_and_collide(self.parent.walk_speed * delta * self.parent.direction)
         if collision:
             var object = collision.collider.get_parent()
             if object.is_in_group("player") and collision.normal != DOWN_NORMAL:
                 object.die()
-                self.parent.change_state(self.parent.idle_state)
+                return self.parent.change_state(self.parent.idle_state)
+
+            if collision.normal == LEFT_NORMAL or collision.normal == RIGHT_NORMAL:
+                self.parent.direction *= -1
 
             var r = collision.remainder
             var n = collision.normal
