@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/mario/smallmario.png" type="Texture" id=2]
@@ -21,7 +21,6 @@ _sections_unfolded = [ "Resource" ]
 
 [sub_resource type="Animation" id=3]
 
-resource_name = "Die"
 length = 1.0
 loop = true
 step = 0.1
@@ -58,7 +57,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 
-resource_name = "PoleSlide"
 length = 0.6
 loop = true
 step = 0.1
@@ -75,7 +73,12 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[node name="Player" type="Node2D" groups=[
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 615.388 )
+
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -97,6 +100,7 @@ jump_button_hold_time = 0.3
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 46
@@ -109,6 +113,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 
+editor/display_folded = true
 texture = SubResource( 2 )
 vframes = 4
 hframes = 4
@@ -144,16 +149,33 @@ limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-smoothing_speed = 4.0
+smoothing_speed = 10.0
 offset_v = 0.0
 offset_h = 0.0
-drag_margin_left = 0.2
+drag_margin_left = 1.0
 drag_margin_top = 0.2
 drag_margin_right = 0.2
 drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
-_sections_unfolded = [ "Editor", "Limit", "Material", "Offset", "Smoothing", "Visibility" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Material", "Offset", "Pause", "Smoothing", "Transform", "Visibility" ]
+
+[node name="Limit" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -87.7733, 0 )
+input_pickable = false
+collision_layer = 64
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" index="0"]
+
+shape = SubResource( 6 )
 
 

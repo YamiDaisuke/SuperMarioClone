@@ -37,6 +37,9 @@ var run_min_jump_force = Vector2()
 onready var body = $KinematicBody2D
 onready var sprite = $KinematicBody2D/Sprite
 onready var animation_player = $KinematicBody2D/Sprite/AnimationPlayer
+onready var camera = $KinematicBody2D/Camera2D
+
+onready var limit_wall = $Limit
 
 # State const for memory optimzation
 onready var idle_state = Idle.new(self)
@@ -51,7 +54,8 @@ onready var cinematic_cut = CinematicCut.new(self)
 var info = null
 
 func _ready():
-
+    self.camera.limit_smoothed = true
+    self.limit_wall.global_position.x = self.camera.limit_left
     if self.debug:
         var scene = preload("res://scenes/debug_tools/PlayerInfo.tscn")
         self.info = scene.instance()
@@ -131,11 +135,19 @@ func start_cinematic_cut():
     self.change_state(cinematic_cut)
 
 
-# func _process(delta):
-#     ._process(delta)
-#     print("On Floor? %s" % self.body.is_on_floor())
-#     print("On Ceiling? %s" % self.body.is_on_ceiling())
-#     print("On Wall? %s" % self.body.is_on_wall())
+func _process(delta):
+    ._process(delta)
+    var new_limit_left = self.camera.get_camera_position().x - get_viewport().get_visible_rect().size.x / 2
+
+    if new_limit_left != self.camera.limit_left:
+        self.camera.limit_left = new_limit_left
+        self.limit_wall.global_position.x = new_limit_left
+
+
+
+func _on_EnemiesRemover_body_entered(body):
+    print("Body!? %s" % body)
+    body.queue_free()
 
 ##### States
 
