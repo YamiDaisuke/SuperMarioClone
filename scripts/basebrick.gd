@@ -13,7 +13,6 @@ onready var hitted_state = Hitted.new(self)
 var velocity = Vector2(0, -250)
 
 func hitted(normal):
-    print("hit? %s" % normal)
     if normal == DOWN_NORMAL:
         self.change_state(self.hitted_state)
 
