@@ -100,7 +100,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Goomba" type="Node2D" index="0" groups=[
+[node name="Goomba" type="Node2D" groups=[
 "enemies",
 ]]
 
@@ -111,8 +111,9 @@ walk_speed = Vector2( 150, 0 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
+editor/display_folded = true
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 _sections_unfolded = [ "Collision", "Pickable", "collision" ]
@@ -179,13 +180,17 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 2
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger" index="0"]
 
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
+
+[connection signal="viewport_exited" from="KinematicBody2D/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
 
