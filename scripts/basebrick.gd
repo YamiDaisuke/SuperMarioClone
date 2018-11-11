@@ -11,11 +11,26 @@ onready var idle_state = Idle.new(self)
 onready var hitted_state = Hitted.new(self)
 
 var velocity = Vector2(0, -250)
+var active = true
+var reward
+
+func _ready():
+    reward = $Reward
+    print("REWARD: %s" % reward)
 
 func hitted(normal):
+    if not self.active:
+        return
+
     if normal == DOWN_NORMAL:
         self.change_state(self.hitted_state)
+        if reward != null:
+            if !reward.grant():
+                self.deactivate()
 
+
+func deactivate():
+    self.active = false
 
 class Idle extends State:
 

@@ -119,7 +119,7 @@ func _on_player_died():
         Coroutines.start(self.start_level())
 
 
-func _on_coin_grabbed(coin):
+func _on_coin_grabbed(coin, free = true):
     print("coin grabbed?")
     self.coins += coin.value
     if self.coins == self.new_life_point_limit:
@@ -128,7 +128,8 @@ func _on_coin_grabbed(coin):
 
     self.score += coin.value * self.points_per_coin
     # TODO: Animate?
-    coin.queue_free()
+    if free:
+        coin.queue_free()
 
 
 func _on_level_finished():
