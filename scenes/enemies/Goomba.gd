@@ -37,6 +37,9 @@ func _on_Trigger_body_entered(body):
     #     self.change_state(self.idle_state)
     #     self.queue_free()
 
+# func _on_VisibilityNotifier2D_viewport_exited(viewport):
+#     print("End?? %s" % viewport.get_visible_rect().end)
+#     print("Position?? %s" % viewport.get_visible_rect().position)
 
 
 class Idle extends State:
@@ -62,6 +65,7 @@ class Walk extends State:
         var collision = self.parent.body.move_and_collide(self.parent.walk_speed * delta * self.parent.direction)
         if collision:
             var object = collision.collider.get_parent()
+
             if object.is_in_group("player") and collision.normal != DOWN_NORMAL:
                 object.die()
                 return self.parent.change_state(self.parent.idle_state)
