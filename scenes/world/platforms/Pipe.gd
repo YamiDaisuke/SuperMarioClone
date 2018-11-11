@@ -4,16 +4,20 @@ extends Node2D
 # Height without the opening
 export(int) var height = 1 setget _set_height
 
-onready var tilemap = $TileMap
+var tilemap
 
 var tileset
 var left_tile
 var right_tile
 
 func _ready():
+    self.tilemap = $TileMap
     self.draw_shaft()
 
 func draw_shaft():
+    if self.tilemap == null:
+        return
+
     self.tileset = tilemap.get_tileset()
     self.left_tile = self.tileset.find_tile_by_name("pipes_foliage26")
     self.right_tile = self.tileset.find_tile_by_name("pipes_foliage27")
@@ -24,5 +28,6 @@ func draw_shaft():
 func _set_height(new_height):
     height = new_height
     if Engine.is_editor_hint():
+        self.tilemap = $TileMap
         self.draw_shaft()
 
