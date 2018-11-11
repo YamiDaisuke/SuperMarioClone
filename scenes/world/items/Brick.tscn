@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.9792, 32.0214 )
+extents = Vector2( 32, 32 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 
@@ -54,26 +54,31 @@ _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity",
 ]]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 bounce_time = 0.15
 bounce_force = Vector2( 0, 550 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
 input_pickable = false
-collision_layer = 1
+collision_layer = 4
 collision_mask = 1
 collision/safe_margin = 0.08
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
 texture = ExtResource( 2 )
-region_enabled = true
+vframes = 2
+hframes = 33
+frame = 1
 region_rect = Rect2( 64, 0, 64, 64 )
-_sections_unfolded = [ "Region" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Particles2D" type="Particles2D" parent="KinematicBody2D" index="2"]
 

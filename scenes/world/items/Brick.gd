@@ -9,12 +9,10 @@ onready var particles = $KinematicBody2D/Particles2D
 onready var sprite = $KinematicBody2D/Sprite
 
 func hitted(normal):
-    print("hit? %s" % normal)
-    if normal == DOWN_NORMAL:
-        self.change_state(self.hitted_state)
-        # TODO: Do this if mario is big
-        # Coroutine.start(break_anim())
-        
+    .hitted(normal)
+    # TODO: Do this if mario is big
+    # Coroutine.start(break_anim())
+
 
 func break_anim():
     #TODO: Break only when Mario is big
@@ -23,4 +21,3 @@ func break_anim():
     yield(Coroutines.wait_for_seconds(0.5), "completed")
     self.queue_free()
 
-    
