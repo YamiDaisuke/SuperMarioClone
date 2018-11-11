@@ -7,6 +7,7 @@ const Player = preload("res://scenes/player/Player.gd")
 export(int, 0, 1000000) var value = 1
 
 onready var Director = get_node("/root/Director")
+onready var animation_player = $OW/AnimationPlayer
 
 func _ready():
     $OW/AnimationPlayer.current_animation = "Blink"
