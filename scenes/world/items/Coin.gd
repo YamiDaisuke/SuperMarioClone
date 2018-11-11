@@ -5,6 +5,7 @@ signal coin_grabbed
 const Player = preload("res://scenes/player/Player.gd")
 
 export(int, 0, 1000000) var value = 1
+export(bool) var collide = true
 
 onready var Director = get_node("/root/Director")
 onready var animation_player = $OW/AnimationPlayer
@@ -17,6 +18,6 @@ func _ready():
 
 
 func _on_Area2D_body_entered(body):
-    if body.get_parent() is Player:
+    if self.collide and body.get_parent() is Player:
         emit_signal("coin_grabbed", self)
 

@@ -46,7 +46,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="QuestionBox" type="Node2D" index="0" groups=[
+[node name="QuestionBox" type="Node2D" groups=[
 "bricks",
 ]]
 

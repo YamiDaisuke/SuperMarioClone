@@ -120,7 +120,6 @@ func _on_player_died():
 
 
 func _on_coin_grabbed(coin, free = true):
-    print("coin grabbed?")
     self.coins += coin.value
     if self.coins == self.new_life_point_limit:
         self.lives += 1

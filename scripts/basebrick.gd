@@ -16,7 +16,6 @@ var reward
 
 func _ready():
     reward = $Reward
-    print("REWARD: %s" % reward)
 
 func hitted(normal):
     if not self.active:

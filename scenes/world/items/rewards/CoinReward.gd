@@ -7,6 +7,7 @@ var coinInstance
 
 func _ready():
     self.coinInstance = CoinScene.instance()
+    self.coinInstance.collide = false
     self.add_child(self.coinInstance)
     self.coinInstance.position.y = 0
 
