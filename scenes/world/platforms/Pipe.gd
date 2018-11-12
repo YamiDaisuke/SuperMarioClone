@@ -11,12 +11,14 @@ var left_tile
 var right_tile
 
 func _ready():
-    self.tilemap = $TileMap
     self.draw_shaft()
 
 func draw_shaft():
     if self.tilemap == null:
-        return
+        if self.has_node("TileMap"):
+            self.tilemap = $TileMap
+        else:
+            return
 
     self.tileset = tilemap.get_tileset()
     self.left_tile = self.tileset.find_tile_by_name("pipes_foliage26")
@@ -28,6 +30,5 @@ func draw_shaft():
 func _set_height(new_height):
     height = new_height
     if Engine.is_editor_hint():
-        self.tilemap = $TileMap
         self.draw_shaft()
 
