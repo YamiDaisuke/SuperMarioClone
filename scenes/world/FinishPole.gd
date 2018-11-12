@@ -23,7 +23,17 @@ func _on_Area2D_body_entered(body):
     if body.get_parent() is Player:
         var player = body.get_parent()
         self.player_ref = player
-        self.emit_signal("hit_pole", 0.5)
+
+        var top = $Top.global_position.y
+        var base = $Base.global_position.y
+        var height = base - top
+
+        var hit_height = body.global_position.y - top
+        var hit_percent = min(1, (1 - hit_height / height) + 0.1)
+        # Set presicion to two decimals
+        hit_percent = (round(hit_percent * 100) / 100)
+
+        self.emit_signal("hit_pole", hit_percent)
         self.change_state(self.slide_state)
 
 

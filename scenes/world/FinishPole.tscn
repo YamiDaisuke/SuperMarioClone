@@ -15,7 +15,7 @@ extents = Vector2( 4.93982, 320 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="FinishPole" type="Node2D"]
+[node name="FinishPole" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -63,6 +63,7 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="Base" type="Sprite" parent="." index="4"]
 
+editor/display_folded = true
 position = Vector2( 0, 320 )
 texture = ExtResource( 4 )
 region_enabled = true
