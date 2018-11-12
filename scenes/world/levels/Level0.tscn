@@ -189,7 +189,11 @@ scale = Vector2( 16, 1.5 )
 
 [node name="Section1" type="Node2D" parent="." index="8"]
 
+editor/display_folded = true
+
 [node name="Boxes" type="Node2D" parent="Section1" index="0"]
+
+editor/display_folded = true
 
 [node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 9 )]
 
@@ -211,11 +215,11 @@ position = Vector2( 1440, 416 )
 
 [node name="Bricks" type="Node2D" parent="Section1" index="1"]
 
-editor/display_folded = true
-
 [node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 1312, 672 )
+
+[node name="Reward" parent="Section1/Bricks/Brick" index="2" instance=ExtResource( 10 )]
 
 [node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 11 )]
 
@@ -226,8 +230,6 @@ position = Vector2( 1440, 672 )
 position = Vector2( 1568, 672 )
 
 [node name="Pipes" type="Node2D" parent="Section1" index="2"]
-
-editor/display_folded = true
 
 [node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 12 )]
 
@@ -250,7 +252,6 @@ height = 3
 
 [node name="Section2" type="Node2D" parent="." index="9"]
 
-editor/display_folded = true
 position = Vector2( 4576, 864 )
 
 [node name="Brick" parent="Section2" index="0" instance=ExtResource( 11 )]
@@ -267,7 +268,7 @@ position = Vector2( 576, -448 )
 
 [node name="Brick4" parent="Section2" index="3" instance=ExtResource( 11 )]
 
-position = Vector2( 640, -447 )
+position = Vector2( 640, -448 )
 
 [node name="Brick5" parent="Section2" index="4" instance=ExtResource( 11 )]
 

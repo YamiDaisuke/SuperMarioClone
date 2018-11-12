@@ -13,6 +13,9 @@ func hitted(normal):
     # TODO: Do this if mario is big
     # Coroutine.start(break_anim())
 
+func deactivate():
+    .deactivate()
+    $KinematicBody2D/Sprite.frame = 3
 
 func break_anim():
     #TODO: Break only when Mario is big
