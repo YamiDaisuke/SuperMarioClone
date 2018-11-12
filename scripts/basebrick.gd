@@ -15,7 +15,8 @@ var active = true
 var reward
 
 func _ready():
-    reward = $Reward
+    if self.has_node("Reward"):
+        reward = $Reward
 
 func hitted(normal):
     if not self.active:
