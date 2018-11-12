@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=4]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 
 flags = 4
 atlas = ExtResource( 2 )
@@ -14,7 +14,7 @@ margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 length = 1.0
 loop = true
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 length = 1.0
 loop = true
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
 length = 0.6
 loop = true
@@ -68,18 +68,18 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 25.007
-height = 16.5868
+height = 12.8267
 
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -111,7 +111,7 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
 editor/display_folded = true
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 vframes = 4
 hframes = 4
 _sections_unfolded = [ "Animation", "Region", "Transform" ]
@@ -123,17 +123,17 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Die = SubResource( 3 )
+anims/Die = SubResource( 2 )
 anims/Idle = ExtResource( 3 )
-anims/Jump = SubResource( 4 )
-anims/PoleSlide = SubResource( 5 )
+anims/Jump = SubResource( 3 )
+anims/PoleSlide = SubResource( 4 )
 anims/Walk = ExtResource( 4 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="2"]
 
