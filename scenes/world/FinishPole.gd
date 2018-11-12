@@ -8,12 +8,16 @@ onready var Coroutine = get_node("/root/Coroutines")
 const State = preload("res://scripts/state_machine.gd").State
 const Player = preload("res://scenes/player/Player.gd")
 
+onready var flag_animator = $Flag/AnimationPlayer
+
 onready var idle_state = Idle.new(self)
 onready var slide_state = Slide.new(self)
 onready var jumpoff_state = JumpOff.new(self)
 
 var player_ref = null
+
 var slided = true
+var flag_dropped = false
 
 func _ready():
     self.current_state = idle_state
@@ -37,6 +41,11 @@ func _on_Area2D_body_entered(body):
         self.change_state(self.slide_state)
 
 
+func _on_flag_animation_finished(name):
+    print("Am I finished?")
+    self.flag_dropped = true
+
+
 class Idle extends State:
 
     func _init(parent).(parent):
@@ -52,6 +61,9 @@ class Slide extends State:
         self.parent.player_ref.start_cinematic_cut()
         self.parent.player_ref.animation_player.current_animation = "PoleSlide"
         self.parent.player_ref.body.move_and_slide(Vector2(350,0))
+
+        self.parent.flag_animator.current_animation = "Drop"
+        self.parent.flag_animator.play()
 
 
     func on_exit():
@@ -76,6 +88,9 @@ class JumpOff extends State:
         Coroutines.start(execute())
 
     func execute():
+        while not self.parent.flag_dropped:
+            yield(Coroutines.wait_for_frames(1), "completed")
+
         var player = self.parent.player_ref
         var jump_force = Vector2(75,-400)
         var velocity = Vector2(jump_force.x, jump_force.y)
