@@ -48,7 +48,7 @@ class Hitted extends State:
         self.name = "Hitted"
         self.parent.tween.connect("tween_completed", self, "_on_tween_completed")
 
-    func on_enter():
+    func on_enter(previous):
         self.original_position = self.parent.body.position
         self.step = 0
         self.parent.tween.interpolate_property(

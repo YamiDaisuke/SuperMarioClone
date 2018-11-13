@@ -57,7 +57,7 @@ class Slide extends State:
     func _init(parent).(parent):
         self.name = "Slide"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.player_ref.start_cinematic_cut()
         self.parent.player_ref.animation_player.current_animation = "PoleSlide"
         self.parent.player_ref.body.move_and_slide(Vector2(350,0))
@@ -84,7 +84,7 @@ class JumpOff extends State:
     func _init(parent).(parent):
         self.name = "Jump Off"
 
-    func on_enter():
+    func on_enter(previous):
         Coroutines.start(execute())
 
     func execute():

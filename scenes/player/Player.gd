@@ -161,7 +161,7 @@ class Idle extends State:
     func _init(parent).(parent):
         self.name = "Idle"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Idle"
 
     func physics_step(delta):
@@ -191,7 +191,7 @@ class Walk extends State:
     func _init(parent).(parent):
         self.name = "Walk"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Walk"
 
     func physics_step(delta):
@@ -226,7 +226,7 @@ class Run extends State:
     func _init(parent).(parent):
         self.name = "Run"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Walk"
         self.parent.animation_player.playback_speed = self.parent.run_speed_factor
         self.lapsed_time = 0
@@ -321,7 +321,7 @@ class Jump extends State:
     func _init(parent).(parent):
         self.name = "Jump"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Jump"
         self.velocity = self.parent.idle_max_jump_force
         self.cancel_x_move = false
@@ -421,7 +421,7 @@ class Fall extends State:
     func _init(parent).(parent):
         self.name = "Fall"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Jump"
         self.x_move_time = self.x_move_threshold
 
@@ -457,7 +457,7 @@ class Dead extends State:
         self.name = "Dead"
 
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Die"
         time = 0
 

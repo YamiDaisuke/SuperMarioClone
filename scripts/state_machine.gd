@@ -19,7 +19,7 @@ func change_state(new_state):
     if current_state != null:
         current_state.on_exit()
 
-    new_state.on_enter()
+    new_state.on_enter(current_state)
     current_state = new_state
 
 func _process(delta):
@@ -46,7 +46,7 @@ class State:
     func _init(parent):
         self.parent = parent
 
-    func on_enter():
+    func on_enter(previous):
         pass
     func step(delta):
         pass

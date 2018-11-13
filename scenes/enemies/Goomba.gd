@@ -47,7 +47,7 @@ class Idle extends State:
     func _init(parent).(parent):
         self.name = "Idle"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.current_animation = "Idle"
 
 
@@ -56,7 +56,7 @@ class Walk extends State:
     func _init(parent).(parent):
         self.name = "Walk"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.animation_player.play()
         self.parent.animation_player.current_animation = "Walk"
 
@@ -86,7 +86,7 @@ class Die extends State:
     func _init(parent).(parent):
         self.name = "Die"
 
-    func on_enter():
+    func on_enter(previous):
         self.parent.collider_animation.current_animation = "Die"
         self.parent.collider_animation.play()
         self.parent.animation_player.current_animation = "Die"
