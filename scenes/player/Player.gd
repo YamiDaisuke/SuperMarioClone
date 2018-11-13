@@ -10,7 +10,11 @@ const ONE_SQUARE_JUMP_FORCE = 195.12
 export (bool) var debug = false
 
 export (float) var gravity = 1200.0
-export (int) var speed = 300
+export (float) var speed = 300
+# Walk speed = 3.25 px/s, Run speed = 8 px/s
+export (float) var run_speed_factor = 2.461538462
+# Accelerate 13.359375 px / s^2 when running
+export (float) var run_acceleration = 1233.173076927
 
 export (float) var idle_min_jump_height = 1.2
 export (float) var idle_max_jump_height = 4.1
@@ -44,6 +48,7 @@ onready var limit_wall = $Limit
 # State const for memory optimzation
 onready var idle_state = Idle.new(self)
 onready var walk_state = Walk.new(self)
+onready var run_state = Run.new(self)
 onready var jump_state = Jump.new(self)
 onready var fall_state = Fall.new(self)
 onready var dead_state = Dead.new(self)
@@ -170,7 +175,10 @@ class Idle extends State:
         self.parent.body.move_and_slide(velocity, UP_NORMAL)
 
         if velocity.x != 0:
-            self.parent.change_state(self.parent.walk_state)
+            if Input.is_action_pressed("b_button"):
+                self.parent.change_state(self.parent.run_state)
+            else:
+                self.parent.change_state(self.parent.walk_state)
             return
 
         # TODO: Avoid horizontal movement
@@ -191,6 +199,10 @@ class Walk extends State:
             self.parent.change_state(self.parent.jump_state)
             return
 
+        if Input.is_action_pressed("b_button"):
+            self.parent.change_state(self.parent.run_state)
+            return
+
         var velocity = self.parent.get_input_velocity()
         velocity.y = self.parent.calculate_y_velocity(delta)
 
@@ -204,6 +216,90 @@ class Walk extends State:
         # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
             self.parent.change_state(self.parent.fall_state)
+
+
+class Run extends State:
+
+    var lapsed_time = 0.0
+    var total_time = 0.0
+
+    func _init(parent).(parent):
+        self.name = "Run"
+
+    func on_enter():
+        self.parent.animation_player.current_animation = "Walk"
+        self.parent.animation_player.playback_speed = self.parent.run_speed_factor
+        self.lapsed_time = 0
+        # t = (vf - v0) / a
+        self.total_time = (( self.parent.speed * self.parent.run_speed_factor ) - self.parent.speed) / self.parent.run_acceleration
+        print("Accel: %f" % self.total_time)
+
+    func on_exit():
+        self.parent.animation_player.playback_speed = 1
+
+    func physics_step(delta):
+        ## Values
+        # Acceleration:
+        # 0 blocks
+        # 0 pixels
+        # 0 s pixels
+        # 14 ss pixel
+        # 4 sss pixels
+        #
+        # (.21875 + .00390625) * 60 = 13.359375
+        #
+        # Final Speed
+        # 0 blocks
+        # 2 pixels
+        # 0 s pixels
+        # 0 ss pixel
+        # 0 sss pixels
+        #
+        # 8 px por segundo
+        #
+        # Initial speed
+        # 0 blocks
+        # 0 pixels
+        # 13 s pixels
+        # 0 ss pixel
+        # 0 sss pixels
+        #
+        # 3.25 px por segundo
+        #
+        # releacion: 2.461538462
+        #
+        # vf = v0 + a * t
+        # (vf - v0) / a = t
+        # t = 0.3556
+        #
+        #########
+        if Input.is_action_just_pressed("a_button"):
+            self.parent.change_state(self.parent.jump_state)
+            return
+
+        if Input.is_action_just_released("b_button"):
+            print("Break!!!!")
+            self.parent.change_state(self.parent.idle_state)
+            return
+
+        var velocity = self.parent.get_input_velocity()
+        var vel_sign = 1 if sign(velocity.x) == 0 else sign(velocity.x)
+        velocity.x += vel_sign * self.parent.run_acceleration * clamp(self.lapsed_time, 0, self.total_time)
+
+        velocity.y = self.parent.calculate_y_velocity(delta)
+
+        if velocity.x != 0:
+            self.parent.sprite.flip_h = velocity.x < 0
+            self.parent.body.move_and_slide(velocity, UP_NORMAL)
+        else:
+            self.parent.change_state(self.parent.idle_state)
+            return
+
+        # TODO: Avoid horizontal movement
+        if not self.parent.is_grounded():
+            self.parent.change_state(self.parent.fall_state)
+
+        self.lapsed_time += delta
 
 
 class Jump extends State:
