@@ -190,8 +190,6 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[connection signal="viewport_exited" from="KinematicBody2D/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
-
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
 
 
