@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/mario/smallmario.png" type="Texture" id=2]
@@ -77,9 +77,14 @@ height = 12.8267
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
+extents = Vector2( 25.0552, 15.3782 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -91,13 +96,17 @@ __meta__ = {
 }
 debug = false
 gravity = 1200.0
-speed = 300
-idle_min_jump_height = 1.2
-idle_max_jump_height = 4.1
-walk_min_jump_height = 4.4
-walk_max_jump_height = 1.4
-run_min_jump_height = 5.1
-run_max_jump_height = 1.5
+walk_min_speed = 17.8125
+walk_max_speed = 375
+walk_accel = 956.25
+run_max_speed = 615
+run_accel = 1012.5
+idle_min_jump_distance = Vector2( 0, 1.2 )
+idle_max_jump_distance = Vector2( 3, 4.1 )
+walk_min_jump_distance = Vector2( 2, 1.4 )
+walk_max_jump_distance = Vector2( 5, 4.4 )
+run_min_jump_distance = Vector2( 3, 1.5 )
+run_max_jump_distance = Vector2( 8, 5.1 )
 jump_button_hold_time = 0.3
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
@@ -142,14 +151,14 @@ rotating = false
 current = true
 zoom = Vector2( 1, 1 )
 limit_left = 0
-limit_top = 32
-limit_right = 10000000
+limit_top = 0
+limit_right = 2147483647
 limit_bottom = 0
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 10.0
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 70.0
 offset_v = 0.0
 offset_h = 0.0
 drag_margin_left = 1.0
@@ -160,6 +169,11 @@ editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Material", "Offset", "Pause", "Smoothing", "Transform", "Visibility" ]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KinematicBody2D" index="3"]
+
+position = Vector2( -0.0566943, 16.5662 )
+shape = SubResource( 6 )
 
 [node name="Limit" type="StaticBody2D" parent="." index="1"]
 
@@ -176,6 +190,6 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" index="0"]
 
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 

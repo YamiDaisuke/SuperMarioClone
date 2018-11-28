@@ -4,38 +4,31 @@ signal died
 
 const State = preload("res://scripts/state_machine.gd").State
 
-# force makes the player jump about one square
-const ONE_SQUARE_JUMP_FORCE = 195.12
+onready var Utils = get_node("/root/Utils")
 
 export (bool) var debug = false
 
 export (float) var gravity = 1200.0
-export (float) var speed = 300
-# Walk speed = 3.25 px/s, Run speed = 8 px/s
-export (float) var run_speed_factor = 2.461538462
-# Accelerate 13.359375 px / s^2 when running
-export (float) var run_acceleration = 1233.173076927
 
-export (float) var idle_min_jump_height = 1.2
-export (float) var idle_max_jump_height = 4.1
+export (float) var walk_min_speed = 17.8125
+export (float) var walk_max_speed = 375
+export (float) var walk_accel = 956.25
 
-export (float) var walk_min_jump_height = 4.4
-export (float) var walk_max_jump_height = 1.4
+export (float) var run_max_speed = 615
+export (float) var run_accel = 1012.5
 
-export (float) var run_min_jump_height = 5.1
-export (float) var run_max_jump_height = 1.5
+export (Vector2) var idle_min_jump_distance = Vector2(0, 1.2)
+export (Vector2) var idle_max_jump_distance = Vector2(3, 4.1)
+
+export (Vector2) var walk_min_jump_distance = Vector2(2, 1.4)
+export (Vector2) var walk_max_jump_distance = Vector2(5, 4.4)
+
+export (Vector2) var run_min_jump_distance = Vector2(3, 1.5)
+export (Vector2) var run_max_jump_distance = Vector2(8, 5.1)
 
 export (float) var jump_button_hold_time = 0.3
 
-
-var idle_max_jump_force = Vector2()
-var idle_min_jump_force = Vector2()
-
-var walk_max_jump_force = Vector2()
-var walk_min_jump_force = Vector2()
-
-var run_max_jump_force = Vector2()
-var run_min_jump_force = Vector2()
+var jump_distances = {}
 
 # References to child nodes
 onready var body = $KinematicBody2D
@@ -55,6 +48,8 @@ onready var dead_state = Dead.new(self)
 onready var cinematic_cut = CinematicCut.new(self)
 
 
+var velocity = Vector2()
+
 # Debug
 var info = null
 
@@ -66,49 +61,33 @@ func _ready():
         self.info = scene.instance()
         self.body.add_child(self.info)
 
-    self.calculate_jump_forces()
+    self.organize_jump_distances()
     self.change_state(self.idle_state)
     animation_player.play()
 
+# Organize jump distances for easier in code use
+func organize_jump_distances():
+    self.jump_distances["Idle"] = {}
+    self.jump_distances["Idle"].min = idle_min_jump_distance
+    self.jump_distances["Idle"].max = idle_max_jump_distance
 
-func calculate_jump_forces():
-    self.idle_max_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.idle_max_jump_height
-    )
-    self.idle_min_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.idle_min_jump_height
-    )
+    self.jump_distances["Walk"] = {}
+    self.jump_distances["Walk"].min = walk_min_jump_distance
+    self.jump_distances["Walk"].max = walk_max_jump_distance
 
-    self.walk_max_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.walk_max_jump_height
-    )
-    self.walk_min_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.walk_min_jump_height
-    )
-
-    self.run_max_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.run_max_jump_height
-    )
-    self.run_min_jump_force = Vector2(
-        0,
-        -ONE_SQUARE_JUMP_FORCE * self.run_min_jump_height
-    )
+    self.jump_distances["Run"] = {}
+    self.jump_distances["Run"].min = run_min_jump_distance
+    self.jump_distances["Run"].max = run_max_jump_distance
 
 
 func get_input_velocity():
     var input_velocity = Vector2()
 
     if Input.is_action_pressed('ui_right'):
-        input_velocity.x += 1
+        input_velocity.x = 1
     if Input.is_action_pressed('ui_left'):
-        input_velocity.x -= 1
+        input_velocity.x = -1
 
-    input_velocity.x = input_velocity.normalized().x * self.speed
     return input_velocity
 
 
@@ -142,11 +121,11 @@ func start_cinematic_cut():
 
 func _process(delta):
     ._process(delta)
-    var new_limit_left = self.camera.get_camera_position().x - get_viewport().get_visible_rect().size.x / 2
+    # var new_limit_left = self.camera.get_camera_position().x - get_viewport().get_visible_rect().size.x / 2
 
-    if new_limit_left != self.camera.limit_left:
-        self.camera.limit_left = new_limit_left
-        self.limit_wall.global_position.x = new_limit_left
+    # if new_limit_left != self.camera.limit_left:
+    #     self.camera.limit_left = new_limit_left
+    #     self.limit_wall.global_position.x = new_limit_left
 
 
 
@@ -163,6 +142,7 @@ class Idle extends State:
 
     func on_enter(previous):
         self.parent.animation_player.current_animation = "Idle"
+        self.parent.velocity.x = 0
 
     func physics_step(delta):
         if Input.is_action_just_pressed("a_button"):
@@ -181,20 +161,23 @@ class Idle extends State:
                 self.parent.change_state(self.parent.walk_state)
             return
 
-        # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
-            self.parent.change_state(self.parent.fall_state)
+            return self.parent.change_state(self.parent.fall_state)
 
 
 class Walk extends State:
+
+    var time = 0
 
     func _init(parent).(parent):
         self.name = "Walk"
 
     func on_enter(previous):
         self.parent.animation_player.current_animation = "Walk"
+        self.time = 0
 
     func physics_step(delta):
+
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
             return
@@ -207,179 +190,151 @@ class Walk extends State:
         velocity.y = self.parent.calculate_y_velocity(delta)
 
         if velocity.x != 0:
+            velocity.x *= clamp(
+                self.parent.walk_min_speed + self.parent.walk_accel * self.time,
+                self.parent.walk_min_speed,
+                self.parent.walk_max_speed
+            )
+
             self.parent.sprite.flip_h = velocity.x < 0
             self.parent.body.move_and_slide(velocity, UP_NORMAL)
+            self.parent.velocity = velocity
         else:
             self.parent.change_state(self.parent.idle_state)
             return
 
-        # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
-            self.parent.change_state(self.parent.fall_state)
+            return self.parent.change_state(self.parent.fall_state)
+
+        if velocity.x < self.parent.walk_max_speed:
+            time += delta
 
 
 class Run extends State:
 
     var lapsed_time = 0.0
-    var total_time = 0.0
+    var min_velocity = 0
 
     func _init(parent).(parent):
         self.name = "Run"
 
     func on_enter(previous):
         self.parent.animation_player.current_animation = "Walk"
-        self.parent.animation_player.playback_speed = self.parent.run_speed_factor
+        self.parent.animation_player.playback_speed = 2
+        self.min_velocity = self.parent.velocity.x
         self.lapsed_time = 0
-        # t = (vf - v0) / a
-        self.total_time = (( self.parent.speed * self.parent.run_speed_factor ) - self.parent.speed) / self.parent.run_acceleration
-        print("Accel: %f" % self.total_time)
+
 
     func on_exit():
         self.parent.animation_player.playback_speed = 1
 
     func physics_step(delta):
-        ## Values
-        # Acceleration:
-        # 0 blocks
-        # 0 pixels
-        # 0 s pixels
-        # 14 ss pixel
-        # 4 sss pixels
-        #
-        # (.21875 + .00390625) * 60 = 13.359375
-        #
-        # Final Speed
-        # 0 blocks
-        # 2 pixels
-        # 0 s pixels
-        # 0 ss pixel
-        # 0 sss pixels
-        #
-        # 8 px por segundo
-        #
-        # Initial speed
-        # 0 blocks
-        # 0 pixels
-        # 13 s pixels
-        # 0 ss pixel
-        # 0 sss pixels
-        #
-        # 3.25 px por segundo
-        #
-        # releacion: 2.461538462
-        #
-        # vf = v0 + a * t
-        # (vf - v0) / a = t
-        # t = 0.3556
-        #
-        #########
+
         if Input.is_action_just_pressed("a_button"):
             self.parent.change_state(self.parent.jump_state)
             return
 
+        # Give grace time with the b button released before change state
         if Input.is_action_just_released("b_button"):
             print("Break!!!!")
             self.parent.change_state(self.parent.idle_state)
             return
 
         var velocity = self.parent.get_input_velocity()
-        var vel_sign = 1 if sign(velocity.x) == 0 else sign(velocity.x)
-        velocity.x += vel_sign * self.parent.run_acceleration * clamp(self.lapsed_time, 0, self.total_time)
-
         velocity.y = self.parent.calculate_y_velocity(delta)
 
         if velocity.x != 0:
+            velocity.x *= clamp(
+                self.min_velocity + self.parent.run_accel * self.lapsed_time,
+                self.min_velocity,
+                self.parent.run_max_speed
+            )
+
             self.parent.sprite.flip_h = velocity.x < 0
             self.parent.body.move_and_slide(velocity, UP_NORMAL)
+            self.parent.velocity = velocity
         else:
             self.parent.change_state(self.parent.idle_state)
             return
 
-        # TODO: Avoid horizontal movement
         if not self.parent.is_grounded():
-            self.parent.change_state(self.parent.fall_state)
+            return self.parent.change_state(self.parent.fall_state)
 
-        self.lapsed_time += delta
+        if velocity.x < self.parent.run_max_speed:
+            self.lapsed_time += delta
 
 
 class Jump extends State:
 
     var velocity = Vector2()
 
+    var max_jump_distance = Vector2()
+    var min_jump_distance = Vector2()
+
+    var min_jump_velocity = Vector2()
+    var max_jump_velocity = Vector2()
+
     var total_time = 0
-    var button_hold_time = 0
+    var jump_button_hold_time = 0
+    var xmove_button_hold_time = 0
 
-    var x_move_time = 0.6
-    # How long can the player move horizontally after start falling
-    var x_move_threshold = 0.6
-    var x_direction_locked = false
-
-    var direction = 1
-
-    var cancel_x_move = false
+    var x_direction = 0
 
     func _init(parent).(parent):
         self.name = "Jump"
 
     func on_enter(previous):
         self.parent.animation_player.current_animation = "Jump"
-        self.velocity = self.parent.idle_max_jump_force
-        self.cancel_x_move = false
+
+        if previous != null:
+            self.max_jump_distance = self.parent.jump_distances[previous.name].max
+            self.min_jump_distance = self.parent.jump_distances[previous.name].min
+
+        # TODO: Should we add Mario size to the distance
+        self.min_jump_velocity = self.calculate_velocity(self.min_jump_distance * 64)
+        self.max_jump_velocity = self.calculate_velocity(self.max_jump_distance * 64)
+        self.velocity = self.min_jump_velocity
         self.total_time = 0
-        self.button_hold_time = 0
-        self.x_direction_locked = false
-        self.x_move_time = self.x_move_threshold
-        #self.parent.sprite.flip_h = velocity.x < 0
-        if self.parent.sprite.flip_h:
-            self.direction = -1
-        else:
-            self.direction = 1
 
+        self.jump_button_hold_time = 0
+        self.xmove_button_hold_time = 0
+        self.x_direction = self.parent.get_input_velocity().x
 
-    """
-    x = vx * t
-    vx = vxi
-    y = vyi*t + (g * t^2) / 2
-    vy = vyo + g*t
+    func calculate_velocity(distance):
+        # v=sqrt(2gh)
+        var vy = sqrt( (2 * self.parent.gravity ) * distance.y )
+        # var time = ( 2 * vy * sin(deg2rad(45)) ) / self.parent.gravity
+        # Times 2, to count for the time to reach the height
+        var time = sqrt( (distance.y * 2) / self.parent.gravity ) * 2
+        var vx = distance.x / time
+        return Vector2(vx, -vy)
 
-    H = (vi^2 * sin^2 (a)) / 2 * g
-    R = (vi^2 * sin (2*a)) / g
-    """
     func physics_step(delta):
 
-        if not self.cancel_x_move:
-            var input_velocity = self.parent.get_input_velocity()
-            self.velocity.x = input_velocity.x
-            var vel_sign = 1 if sign(self.velocity.x) == 0 else sign(self.velocity.x)
-            if vel_sign != direction or self.x_direction_locked:
-
-                if sign(self.velocity.x) == direction:
-                    self.velocity.x *= -1
-
-                self.x_direction_locked = true
-                self.x_move_time -= delta
-                var x_movement_allowed = max(
-                    self.x_move_time / self.x_move_threshold, 0)
-                self.velocity.x *= x_movement_allowed
-        else:
-            self.velocity.x = 0
-
+        var input_velocity = self.parent.get_input_velocity()
 
         if Input.is_action_pressed("a_button"):
-            self.button_hold_time = min(
-                self.button_hold_time + delta,
+            self.jump_button_hold_time = min(
+                self.jump_button_hold_time + delta,
                 self.parent.jump_button_hold_time
             ) / self.parent.jump_button_hold_time
 
-        var target_jump_force = self.parent.idle_min_jump_force \
-                .linear_interpolate(
-                    self.parent.idle_max_jump_force,
-                    self.button_hold_time
-                )
+
+        if input_velocity.x != 0:
+            self.xmove_button_hold_time = min(
+                self.xmove_button_hold_time + delta,
+                self.parent.jump_button_hold_time
+            ) / self.parent.jump_button_hold_time
+
+        var target_jump_velocity = Vector2(
+            Utils.f_linear_interpolate(self.min_jump_velocity.x, self.max_jump_velocity.x, self.xmove_button_hold_time),
+            Utils.f_linear_interpolate(self.min_jump_velocity.y, self.max_jump_velocity.y, self.jump_button_hold_time)
+        )
 
         if not self.parent.is_grounded():
             self.total_time += delta
-            velocity.y = target_jump_force.y + self.parent.gravity * total_time
+            self.velocity.x = target_jump_velocity.x * input_velocity.x
+            self.velocity.y = target_jump_velocity.y + self.parent.gravity * total_time
         elif self.total_time > 0:
             self.velocity.y = self.parent.gravity
             return self.parent.change_state(self.parent.idle_state)
@@ -394,7 +349,7 @@ class Jump extends State:
 
                     # Make this hit the highest point in the jump, so the player start
                     # falling after hit any obstacle
-                    total_time = (0 - target_jump_force.y) / self.parent.gravity
+                    total_time = (0 - target_jump_velocity.y) / self.parent.gravity
                 else:
                     self.parent.slide_reminder(self.parent.body, collision)
 
@@ -404,11 +359,6 @@ class Jump extends State:
             else:
                 # Non interactable items should just slide?
                 self.parent.slide_reminder(self.parent.body, collision)
-            self.cancel_x_move = collision.normal != UP_NORMAL
-        else:
-            self.cancel_x_move = false
-
-
 
 
 class Fall extends State:
@@ -422,6 +372,7 @@ class Fall extends State:
         self.name = "Fall"
 
     func on_enter(previous):
+        print("Faling from grace!")
         self.parent.animation_player.current_animation = "Jump"
         self.x_move_time = self.x_move_threshold
 
@@ -438,6 +389,7 @@ class Fall extends State:
         self.parent.body.move_and_slide(velocity, UP_NORMAL)
 
         if self.parent.is_grounded():
+            print("Going Idle")
             self.parent.change_state(self.parent.idle_state)
 
 
