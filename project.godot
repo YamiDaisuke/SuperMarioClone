@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Coroutines="*res://scripts/coroutines.gd"
 Director="*res://scripts/director.gd"
+Utils="*res://scripts/utils.gd"
 
 [display]
 
