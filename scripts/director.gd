@@ -36,11 +36,11 @@ func _ready():
     # TODO: Load from a config file
     var l1 = LevelInfo.new()
     l1.number = 0
-    l1.name = "1 - 4"
+    l1.name = "1 - 1"
     l1.time = 400
     l1.type = OVER_WORLD
     l1.pole_points = 2000
-    l1.scene = "res://scenes/world/Levels/Level0.tscn"
+    l1.scene = "res://scenes/world/levels/Level0.tscn"
 
     var l2 = LevelInfo.new()
     l2.number = 1
@@ -48,7 +48,7 @@ func _ready():
     l2.time = 400
     l2.type = UNDER_WORLD
     l2.pole_points = 2000
-    l2.scene = "res://scenes/world/Levels/Level1.tscn"
+    l2.scene = "res://scenes/world/levels/Level1.tscn"
 
     levels.append(l1)
     levels.append(l2)
