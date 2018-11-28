@@ -5,14 +5,14 @@
 [ext_resource path="res://spritesheets/world/PipesFoliage.tres" type="TileSet" id=3]
 [ext_resource path="res://spritesheets/world/Bricks.tres" type="TileSet" id=4]
 [ext_resource path="res://scenes/world/FinishPole.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/world/WalkCinematic.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/world/items/rewards/CoinReward.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/world/platforms/Pipe.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/world/WalkCinematic.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/world/DeathZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/world/items/QuestionBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/world/items/rewards/CoinReward.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/world/platforms/Pipe.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -84,12 +84,7 @@ _sections_unfolded = [ "Cell", "Collision" ]
 
 position = Vector2( 12640, 544 )
 
-[node name="Player" parent="." index="4" instance=ExtResource( 6 )]
-
-position = Vector2( 320, 864 )
-_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "collision" ]
-
-[node name="Castle" type="Node2D" parent="." index="5"]
+[node name="Castle" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( 13056, 768 )
@@ -143,7 +138,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ExitWalk" parent="." index="6" instance=ExtResource( 7 )]
+[node name="ExitWalk" parent="." index="5" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 position = Vector2( 12800, 864 )
@@ -182,12 +177,12 @@ _sections_unfolded = [ "Transform" ]
 
 shape = SubResource( 2 )
 
-[node name="DeathZone" parent="." index="7" instance=ExtResource( 8 )]
+[node name="DeathZone" parent="." index="6" instance=ExtResource( 7 )]
 
 position = Vector2( 6656, 1040 )
 scale = Vector2( 16, 1.5 )
 
-[node name="Section1" type="Node2D" parent="." index="8"]
+[node name="Section1" type="Node2D" parent="." index="7"]
 
 editor/display_folded = true
 
@@ -195,230 +190,239 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 9 )]
+[node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 8 )]
 
 position = Vector2( 1056, 672 )
 
-[node name="Reward" parent="Section1/Boxes/QuestionBox" index="2" instance=ExtResource( 10 )]
+[node name="Reward" parent="Section1/Boxes/QuestionBox" index="2" instance=ExtResource( 9 )]
 
-[node name="QuestionBox2" parent="Section1/Boxes" index="1" instance=ExtResource( 9 )]
+[node name="QuestionBox2" parent="Section1/Boxes" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 1376, 672 )
 
-[node name="QuestionBox3" parent="Section1/Boxes" index="2" instance=ExtResource( 9 )]
+[node name="QuestionBox3" parent="Section1/Boxes" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 1504, 672 )
 
-[node name="QuestionBox4" parent="Section1/Boxes" index="3" instance=ExtResource( 9 )]
+[node name="QuestionBox4" parent="Section1/Boxes" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 1440, 416 )
 
 [node name="Bricks" type="Node2D" parent="Section1" index="1"]
 
-[node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 11 )]
+editor/display_folded = true
+
+[node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 1312, 672 )
 
-[node name="Reward" parent="Section1/Bricks/Brick" index="2" instance=ExtResource( 10 )]
+[node name="Reward" parent="Section1/Bricks/Brick" index="2" instance=ExtResource( 9 )]
 
-[node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 11 )]
+[node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 1440, 672 )
 
-[node name="Brick3" parent="Section1/Bricks" index="2" instance=ExtResource( 11 )]
+[node name="Brick3" parent="Section1/Bricks" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 1568, 672 )
 
 [node name="Pipes" type="Node2D" parent="Section1" index="2"]
 
-[node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 12 )]
+editor/display_folded = true
+
+[node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 1856, 832 )
 
-[node name="Pipe2" parent="Section1/Pipes" index="1" instance=ExtResource( 12 )]
+[node name="Pipe2" parent="Section1/Pipes" index="1" instance=ExtResource( 11 )]
 
 position = Vector2( 2496, 768 )
 height = 2
 
-[node name="Pipe3" parent="Section1/Pipes" index="2" instance=ExtResource( 12 )]
+[node name="Pipe3" parent="Section1/Pipes" index="2" instance=ExtResource( 11 )]
 
 position = Vector2( 3008, 704 )
 height = 3
 
-[node name="Pipe4" parent="Section1/Pipes" index="3" instance=ExtResource( 12 )]
+[node name="Pipe4" parent="Section1/Pipes" index="3" instance=ExtResource( 11 )]
 
 position = Vector2( 3712, 704 )
 height = 3
 
-[node name="Section2" type="Node2D" parent="." index="9"]
+[node name="Section2" type="Node2D" parent="." index="8"]
 
+editor/display_folded = true
 position = Vector2( 4576, 864 )
 
-[node name="Brick" parent="Section2" index="0" instance=ExtResource( 11 )]
+[node name="Brick" parent="Section2" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 384, -192 )
 
-[node name="Brick2" parent="Section2" index="1" instance=ExtResource( 11 )]
+[node name="Brick2" parent="Section2" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 512, -192 )
 
-[node name="Brick3" parent="Section2" index="2" instance=ExtResource( 11 )]
+[node name="Brick3" parent="Section2" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 576, -448 )
 
-[node name="Brick4" parent="Section2" index="3" instance=ExtResource( 11 )]
+[node name="Brick4" parent="Section2" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 640, -448 )
 
-[node name="Brick5" parent="Section2" index="4" instance=ExtResource( 11 )]
+[node name="Brick5" parent="Section2" index="4" instance=ExtResource( 10 )]
 
 position = Vector2( 704, -448 )
 
-[node name="Brick6" parent="Section2" index="5" instance=ExtResource( 11 )]
+[node name="Brick6" parent="Section2" index="5" instance=ExtResource( 10 )]
 
 position = Vector2( 768, -448 )
 
-[node name="Brick7" parent="Section2" index="6" instance=ExtResource( 11 )]
+[node name="Brick7" parent="Section2" index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 832, -448 )
 
-[node name="Brick8" parent="Section2" index="7" instance=ExtResource( 11 )]
+[node name="Brick8" parent="Section2" index="7" instance=ExtResource( 10 )]
 
 position = Vector2( 896, -448 )
 
-[node name="Brick9" parent="Section2" index="8" instance=ExtResource( 11 )]
+[node name="Brick9" parent="Section2" index="8" instance=ExtResource( 10 )]
 
 position = Vector2( 960, -448 )
 
-[node name="Brick10" parent="Section2" index="9" instance=ExtResource( 11 )]
+[node name="Brick10" parent="Section2" index="9" instance=ExtResource( 10 )]
 
 position = Vector2( 1024, -448 )
 
-[node name="QuestionBox" parent="Section2" index="10" instance=ExtResource( 9 )]
+[node name="QuestionBox" parent="Section2" index="10" instance=ExtResource( 8 )]
 
 position = Vector2( 448, -192 )
 
-[node name="Section3" type="Node2D" parent="." index="10"]
+[node name="Section3" type="Node2D" parent="." index="9"]
 
 editor/display_folded = true
 position = Vector2( 5792, 864 )
 
-[node name="Brick" parent="Section3" index="0" instance=ExtResource( 11 )]
+[node name="Brick" parent="Section3" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 64, -448 )
 
-[node name="Brick2" parent="Section3" index="1" instance=ExtResource( 11 )]
+[node name="Brick2" parent="Section3" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 128, -448 )
 
-[node name="Brick3" parent="Section3" index="2" instance=ExtResource( 11 )]
+[node name="Brick3" parent="Section3" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 192, -448 )
 
-[node name="Brick4" parent="Section3" index="3" instance=ExtResource( 11 )]
+[node name="Brick4" parent="Section3" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 256, -192 )
 
-[node name="Brick5" parent="Section3" index="4" instance=ExtResource( 11 )]
+[node name="Brick5" parent="Section3" index="4" instance=ExtResource( 10 )]
 
 position = Vector2( 640, -192 )
 
-[node name="Brick6" parent="Section3" index="5" instance=ExtResource( 11 )]
+[node name="Brick6" parent="Section3" index="5" instance=ExtResource( 10 )]
 
 position = Vector2( 704, -192 )
 
-[node name="Brick7" parent="Section3" index="6" instance=ExtResource( 11 )]
+[node name="Brick7" parent="Section3" index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 1728, -192 )
 
-[node name="Brick8" parent="Section3" index="7" instance=ExtResource( 11 )]
+[node name="Brick8" parent="Section3" index="7" instance=ExtResource( 10 )]
 
 position = Vector2( 1920, -448 )
 
-[node name="Brick9" parent="Section3" index="8" instance=ExtResource( 11 )]
+[node name="Brick9" parent="Section3" index="8" instance=ExtResource( 10 )]
 
 position = Vector2( 1984, -448 )
 
-[node name="Brick10" parent="Section3" index="9" instance=ExtResource( 11 )]
+[node name="Brick10" parent="Section3" index="9" instance=ExtResource( 10 )]
 
 position = Vector2( 2048, -448 )
 
-[node name="Brick11" parent="Section3" index="10" instance=ExtResource( 11 )]
+[node name="Brick11" parent="Section3" index="10" instance=ExtResource( 10 )]
 
 position = Vector2( 2368, -448 )
 
-[node name="Brick12" parent="Section3" index="11" instance=ExtResource( 11 )]
+[node name="Brick12" parent="Section3" index="11" instance=ExtResource( 10 )]
 
 position = Vector2( 2560, -448 )
 
-[node name="Brick13" parent="Section3" index="12" instance=ExtResource( 11 )]
+[node name="Brick13" parent="Section3" index="12" instance=ExtResource( 10 )]
 
 position = Vector2( 2432, -192 )
 
-[node name="Brick14" parent="Section3" index="13" instance=ExtResource( 11 )]
+[node name="Brick14" parent="Section3" index="13" instance=ExtResource( 10 )]
 
 position = Vector2( 2496, -192 )
 
-[node name="QuestionBox" parent="Section3" index="14" instance=ExtResource( 9 )]
+[node name="QuestionBox" parent="Section3" index="14" instance=ExtResource( 8 )]
 
 position = Vector2( 256, -448 )
 
-[node name="QuestionBox2" parent="Section3" index="15" instance=ExtResource( 9 )]
+[node name="QuestionBox2" parent="Section3" index="15" instance=ExtResource( 8 )]
 
 position = Vector2( 1024, -192 )
 
-[node name="QuestionBox3" parent="Section3" index="16" instance=ExtResource( 9 )]
+[node name="QuestionBox3" parent="Section3" index="16" instance=ExtResource( 8 )]
 
 position = Vector2( 1216, -192 )
 
-[node name="QuestionBox4" parent="Section3" index="17" instance=ExtResource( 9 )]
+[node name="QuestionBox4" parent="Section3" index="17" instance=ExtResource( 8 )]
 
 position = Vector2( 1408, -192 )
 
-[node name="QuestionBox5" parent="Section3" index="18" instance=ExtResource( 9 )]
+[node name="QuestionBox5" parent="Section3" index="18" instance=ExtResource( 8 )]
 
 position = Vector2( 1216, -448 )
 
-[node name="QuestionBox6" parent="Section3" index="19" instance=ExtResource( 9 )]
+[node name="QuestionBox6" parent="Section3" index="19" instance=ExtResource( 8 )]
 
 position = Vector2( 2432, -448 )
 
-[node name="QuestionBox7" parent="Section3" index="20" instance=ExtResource( 9 )]
+[node name="QuestionBox7" parent="Section3" index="20" instance=ExtResource( 8 )]
 
 position = Vector2( 2496, -448 )
 
-[node name="Section4" type="Node2D" parent="." index="11"]
+[node name="Section4" type="Node2D" parent="." index="10"]
 
 editor/display_folded = true
 position = Vector2( 10176, 832 )
 
-[node name="Pipe" parent="Section4" index="0" instance=ExtResource( 12 )]
+[node name="Pipe" parent="Section4" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 256, 0 )
 
-[node name="Pipe2" parent="Section4" index="1" instance=ExtResource( 12 )]
+[node name="Pipe2" parent="Section4" index="1" instance=ExtResource( 11 )]
 
 position = Vector2( 1280, 0 )
 
-[node name="Brick" parent="Section4" index="2" instance=ExtResource( 11 )]
+[node name="Brick" parent="Section4" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 544, -160 )
 
-[node name="Brick2" parent="Section4" index="3" instance=ExtResource( 11 )]
+[node name="Brick2" parent="Section4" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 608, -160 )
 
-[node name="Brick3" parent="Section4" index="4" instance=ExtResource( 11 )]
+[node name="Brick3" parent="Section4" index="4" instance=ExtResource( 10 )]
 
 position = Vector2( 736, -160 )
 
-[node name="QuestionBox" parent="Section4" index="5" instance=ExtResource( 9 )]
+[node name="QuestionBox" parent="Section4" index="5" instance=ExtResource( 8 )]
 
 position = Vector2( 672, -160 )
 
-[node name="Goomba" parent="." index="12" instance=ExtResource( 13 )]
+[node name="Goomba" parent="." index="11" instance=ExtResource( 12 )]
 
 position = Vector2( 2112, 864 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Player" parent="." index="12" instance=ExtResource( 13 )]
+
+position = Vector2( 320, 864 )
 
 

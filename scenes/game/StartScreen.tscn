@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/game/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://fonts/freaky-fonts_emulogic/emulogic.tres" type="DynamicFont" id=2]
 
-[node name="StartScreen" type="CanvasLayer"]
+[node name="StartScreen" type="CanvasLayer" index="0"]
 
 layer = 8
 offset = Vector2( 0, 0 )
