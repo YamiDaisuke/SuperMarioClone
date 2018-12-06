@@ -12,6 +12,7 @@ config_version=3
 
 config/name="SuperMarioBros"
 run/main_scene="res://scenes/game/StartScreen.tscn"
+boot_splash/image="res://splash.png"
 config/icon="res://icon.png"
 
 [autoload]
