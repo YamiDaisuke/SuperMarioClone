@@ -26,6 +26,10 @@ export (Vector2) var run_max_jump_distance = Vector2(8, 5.1)
 
 export (float) var jump_button_hold_time = 0.3
 
+# Audio Streams
+export (AudioStream) var jump_fx
+export (AudioStream) var stomp_fx
+
 var jump_distances = {}
 
 # References to child nodes
@@ -33,6 +37,7 @@ onready var body = $KinematicBody2D
 onready var sprite = $KinematicBody2D/Sprite
 onready var animation_player = $KinematicBody2D/Sprite/AnimationPlayer
 onready var camera = $KinematicBody2D/Camera2D
+onready var audio_player = $AudioStreamPlayer
 
 onready var limit_wall = $Limit
 
@@ -298,6 +303,9 @@ class Jump extends State:
         self.xmove_button_hold_time = 0
         self.x_direction = self.parent.get_input_velocity().x
 
+        self.parent.audio_player.stream = self.parent.jump_fx
+        self.parent.audio_player.play()
+
     func calculate_velocity(distance):
         # v=sqrt(2gh)
         var vy = sqrt( (2 * self.parent.gravity ) * distance.y )
@@ -354,6 +362,9 @@ class Jump extends State:
             elif object.is_in_group("enemies"):
                 if collision.normal == UP_NORMAL:
                     object.hitted(collision.normal)
+                    if not self.parent.audio_player.is_playing():
+                        self.parent.audio_player.stream = self.parent.stomp_fx
+                        self.parent.audio_player.play()
             else:
                 # Non interactable items should just slide?
                 self.parent.slide_reminder(self.parent.body, collision)

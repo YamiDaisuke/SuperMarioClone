@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://spritesheets/mario/smallmario.png" type="Texture" id=2]
-[ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=3]
-[ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=4]
+[ext_resource path="res://sounds/player/smb_jump-small.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/player/smb_stomp.wav" type="AudioStream" id=3]
+[ext_resource path="res://spritesheets/mario/smallmario.png" type="Texture" id=4]
+[ext_resource path="res://scenes/player/small_mario_idle.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/player/small_mario_walk.tres" type="Animation" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 
 flags = 4
-atlas = ExtResource( 2 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 288, 288 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
@@ -84,7 +86,7 @@ extents = Vector2( 25.0552, 15.3782 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -108,9 +110,12 @@ walk_max_jump_distance = Vector2( 5, 4.4 )
 run_min_jump_distance = Vector2( 3, 1.5 )
 run_max_jump_distance = Vector2( 8, 5.1 )
 jump_button_hold_time = 0.3
+jump_fx = ExtResource( 2 )
+stomp_fx = ExtResource( 3 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 46
@@ -133,10 +138,10 @@ playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Die = SubResource( 2 )
-anims/Idle = ExtResource( 3 )
+anims/Idle = ExtResource( 5 )
 anims/Jump = SubResource( 3 )
 anims/PoleSlide = SubResource( 4 )
-anims/Walk = ExtResource( 4 )
+anims/Walk = ExtResource( 6 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
 
@@ -191,5 +196,14 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" index="0"]
 
 shape = SubResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 
