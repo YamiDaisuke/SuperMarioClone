@@ -3,8 +3,6 @@ extends "res://scripts/state_machine.gd"
 const State = preload("res://scripts/state_machine.gd").State
 const Player = preload("res://scenes/player/Player.gd")
 
-onready var Coroutines = get_node("/root/Coroutines")
-
 signal finished
 
 onready var idle_state = Idle.new(self)

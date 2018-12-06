@@ -4,8 +4,6 @@ signal died
 
 const State = preload("res://scripts/state_machine.gd").State
 
-onready var Utils = get_node("/root/Utils")
-
 export (bool) var debug = false
 
 export (float) var gravity = 1200.0

@@ -17,7 +17,6 @@ var HUD = preload("res://scenes/game/HUD.tscn")
 export(int, 100000000) var new_life_point_limit = 100
 export(int, 100000000) var points_per_coin = 200
 
-onready var Coroutines = get_node("/root/Coroutines")
 onready var level_start_scrn = preload("res://scenes/game/LevelStart.tscn")
 onready var timer = Timer.new()
 
