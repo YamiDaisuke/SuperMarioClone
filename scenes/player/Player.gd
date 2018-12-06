@@ -303,6 +303,7 @@ class Jump extends State:
         self.xmove_button_hold_time = 0
         self.x_direction = self.parent.get_input_velocity().x
 
+        self.parent.audio_player.stop()
         self.parent.audio_player.stream = self.parent.jump_fx
         self.parent.audio_player.play()
 
@@ -363,6 +364,7 @@ class Jump extends State:
                 if collision.normal == UP_NORMAL:
                     object.hitted(collision.normal)
                     if not self.parent.audio_player.is_playing():
+                        self.parent.audio_player.stop()
                         self.parent.audio_player.stream = self.parent.stomp_fx
                         self.parent.audio_player.play()
             else:
