@@ -26,12 +26,18 @@ var score = 4540 setget _set_score
 var coins = 0 setget _set_coins
 var player_status
 
+var audio_player
+
 var current_level = null
 var time_count = 0
 
 var hud_instance
 
 func _ready():
+    self.audio_player = AudioStreamPlayer.new()
+    self.audio_player.volume_db = 0
+    self.add_child(self.audio_player)
+
     # TODO: Load from a config file
     var l1 = LevelInfo.new()
     l1.number = 0
@@ -40,6 +46,7 @@ func _ready():
     l1.type = OVER_WORLD
     l1.pole_points = 2000
     l1.scene = "res://scenes/world/levels/Level0.tscn"
+    l1.bg_audio = "res://sounds/bg/overworld.wav"
 
     var l2 = LevelInfo.new()
     l2.number = 1
@@ -48,6 +55,7 @@ func _ready():
     l2.type = UNDER_WORLD
     l2.pole_points = 2000
     l2.scene = "res://scenes/world/levels/Level1.tscn"
+    l2.bg_audio = "res://sounds/bg/overworld.mp3"
 
     levels.append(l1)
     levels.append(l2)
@@ -76,11 +84,15 @@ func start_level():
     var start_instance = self.level_start_scrn.instance()
     add_child(start_instance)
 
+    self.audio_player.stream = load(self.current_level.bg_audio)
+
     yield(Coroutines.wait_for_seconds(2), "completed")
     start_instance.queue_free()
     yield(Coroutines.wait_for_seconds(1), "completed")
 
+    self.audio_player.play()
     timer.start()
+
 
 func _set_score(value):
     score = value
@@ -118,16 +130,13 @@ func _on_player_died():
         Coroutines.start(self.start_level())
 
 
-func _on_coin_grabbed(coin, free = true):
+func _on_coin_grabbed(coin):
     self.coins += coin.value
     if self.coins == self.new_life_point_limit:
         self.lives += 1
         self.coins = 0
 
     self.score += coin.value * self.points_per_coin
-    # TODO: Animate?
-    if free:
-        coin.queue_free()
 
 
 func _on_level_finished():
@@ -158,3 +167,4 @@ class LevelInfo:
     var type
     var pole_points
     var scene
+    var bg_audio
