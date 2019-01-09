@@ -124,17 +124,12 @@ func start_cinematic_cut():
 
 func _process(delta):
     ._process(delta)
-    # var new_limit_left = self.camera.get_camera_position().x - get_viewport().get_visible_rect().size.x / 2
+    var new_limit_left = self.camera.get_camera_position().x - get_viewport().get_visible_rect().size.x / 2
 
-    # if new_limit_left != self.camera.limit_left:
-    #     self.camera.limit_left = new_limit_left
-    #     self.limit_wall.global_position.x = new_limit_left
+    if new_limit_left != self.camera.limit_left:
+        self.camera.limit_left = new_limit_left
+        self.limit_wall.global_position.x = new_limit_left
 
-
-
-func _on_EnemiesRemover_body_entered(body):
-    print("Body!? %s" % body)
-    body.queue_free()
 
 ##### States
 
