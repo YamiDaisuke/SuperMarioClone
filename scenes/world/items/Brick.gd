@@ -3,8 +3,6 @@ extends "res://scripts/basebrick.gd"
 const State = preload("res://scripts/state_machine.gd").State
 const Hitted = preload("res://scripts/basebrick.gd").Hitted
 
-onready var Coroutine = get_node("/root/Coroutines")
-
 onready var particles = $KinematicBody2D/Particles2D
 onready var sprite = $KinematicBody2D/Sprite
 

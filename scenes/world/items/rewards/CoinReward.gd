@@ -14,9 +14,8 @@ func _ready():
 
 
 func grant():
-    coinInstance.animation_player.current_animation = "Pick"
-    coinInstance.animation_player.play()
-    coinInstance.emit_signal("coin_grabbed", coinInstance, false)
+    coinInstance.emit_signal("coin_grabbed", coinInstance)
+    coinInstance.consume(true, true, true)
     self.available = false
 
     return self.available

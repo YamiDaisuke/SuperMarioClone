@@ -2,7 +2,7 @@
 
 [ext_resource path="res://spritesheets/world/bricks.png" type="Texture" id=1]
 
-[node name="Bricks" type="Node2D" index="0"]
+[node name="Bricks" type="Node2D"]
 
 [node name="bricks0" type="Sprite" parent="." index="0"]
 

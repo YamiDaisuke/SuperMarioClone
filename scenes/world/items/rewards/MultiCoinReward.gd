@@ -3,9 +3,8 @@ extends "res://scenes/world/items/rewards/CoinReward.gd"
 export(float) var time = 2
 
 func grant():
-    coinInstance.animation_player.current_animation = "Pick"
-    coinInstance.animation_player.play()
-    coinInstance.emit_signal("coin_grabbed", coinInstance, false)
+    coinInstance.emit_signal("coin_grabbed", coinInstance)
+    coinInstance.consume(true, true, !self.available)
 
     if $Timer.is_stopped():
         $Timer.wait_time = self.time
