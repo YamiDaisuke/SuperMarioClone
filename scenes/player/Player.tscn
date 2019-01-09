@@ -200,7 +200,7 @@ shape = SubResource( 7 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 
 stream = null
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
