@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/world/items/Brick.gd" type="Script" id=1]
-[ext_resource path="res://spritesheets/world/bricks.png" type="Texture" id=2]
-[ext_resource path="res://spritesheets/world/brick_particle.png" type="Texture" id=3]
+[ext_resource path="res://sounds/items/smb_bump.wav" type="AudioStream" id=2]
+[ext_resource path="res://spritesheets/world/bricks.png" type="Texture" id=3]
+[ext_resource path="res://spritesheets/world/brick_particle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -57,6 +58,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 bounce_time = 0.15
 bounce_force = Vector2( 0, 550 )
+hit_fx = ExtResource( 2 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
@@ -68,7 +70,7 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 vframes = 2
 hframes = 33
 frame = 1
@@ -96,7 +98,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 2 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 normal_map = null
 h_frames = 1
 v_frames = 1
