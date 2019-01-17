@@ -83,7 +83,7 @@ func start_level():
     get_tree().change_scene(self.current_level.scene)
     var start_instance = self.level_start_scrn.instance()
     add_child(start_instance)
-
+    get_tree().paused = true
     self.audio_player.stream = load(self.current_level.bg_audio)
 
     yield(Coroutines.wait_for_seconds(2), "completed")
@@ -91,7 +91,9 @@ func start_level():
     yield(Coroutines.wait_for_seconds(1), "completed")
 
     self.audio_player.play()
+    get_tree().paused = false
     timer.start()
+
 
 
 func _set_score(value):
