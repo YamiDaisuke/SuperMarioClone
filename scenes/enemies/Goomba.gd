@@ -9,6 +9,8 @@ export (int) var direction = -1
 export (float) var trigger_distance = 64 * 18
 export (Vector2) var walk_speed = Vector2(150,0)
 
+export (Vector2) var stomp_kickback = Vector2(2, 1.4)
+
 onready var animation_player = $KinematicBody2D/AnimationPlayer
 onready var collider_animation = $KinematicBody2D/CollisionShape2D/AnimationPlayer
 onready var body = $KinematicBody2D
@@ -22,8 +24,11 @@ func _ready():
     $Trigger/CollisionShape2D.shape.extents = Vector2(trigger_distance, trigger_distance)
     self.change_state(self.idle_state)
 
+
 func hitted(normal):
     self.change_state(self.die_state)
+    return self.stomp_kickback * 64
+
 
 func _on_Trigger_body_entered(body):
     if body.get_parent().is_in_group("player"):
