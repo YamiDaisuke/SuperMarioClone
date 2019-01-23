@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://sounds/player/smb_jump-small.wav" type="AudioStream" id=2]
@@ -70,6 +70,25 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
+[sub_resource type="Animation" id=8]
+
+resource_name = "Skid"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
 [sub_resource type="CapsuleShape2D" id=5]
 
 custom_solver_bias = 0.0
@@ -86,7 +105,7 @@ extents = Vector2( 25.0552, 15.3782 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -104,8 +123,7 @@ walk_accel = 956.25
 run_max_speed = 615
 run_accel = 1012.5
 run_deaccel = -731.25
-skid_deaccel = -1462.5
-skid_turn = 8100
+skid_turn = -1462.5
 idle_min_jump_distance = Vector2( 0, 1.2 )
 idle_max_jump_distance = Vector2( 3, 4.1 )
 walk_min_jump_distance = Vector2( 2, 1.4 )
@@ -142,6 +160,7 @@ anims/Die = SubResource( 2 )
 anims/Idle = ExtResource( 5 )
 anims/Jump = SubResource( 3 )
 anims/PoleSlide = SubResource( 4 )
+anims/Skid = SubResource( 8 )
 anims/Walk = ExtResource( 6 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]

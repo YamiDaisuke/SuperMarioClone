@@ -16,8 +16,7 @@ export (float) var run_max_speed = 615
 export (float) var run_accel = 1012.5
 export (float) var run_deaccel = -731.25
 
-export (float) var skid_deaccel = -1462.5
-export (float) var skid_turn = 8100
+export (float) var skid_turn = -1462.5
 
 export (Vector2) var idle_min_jump_distance = Vector2(0, 1.2)
 export (Vector2) var idle_max_jump_distance = Vector2(3, 4.1)
@@ -166,54 +165,120 @@ class Idle extends State:
 
 class Move extends State:
 
-    var lapsed_time = 0
+    var last_direction = 1
+    var new_direction = 0.0
+    var change_direction = false
+    var locked_velocity = 0
+    # How many frames we wait before start deacceleration
+    # after b button is released
+    var b_release_threshold = 10
+
+    var b_released_frames = 0
 
     func _init(parent).(parent):
         self.name = "Walk"
 
     func on_enter(previous):
         self.parent.animation_player.current_animation = "Walk"
-        self.lapsed_time = 0
+        self.last_direction = -1 if self.parent.velocity.x < 0 else 1
+        self.b_released_frames = 0
+        self.new_direction = 0.0
+        self.change_direction = false
+        self.locked_velocity = 0
 
     func physics_step(delta):
 
         if self.jump():
             return
 
+        var input_velocity = self.parent.get_input_velocity()
+        input_velocity.y = self.parent.calculate_y_velocity(delta)
+
         var accel = self.parent.walk_accel
         var max_vel = self.parent.walk_max_speed
+        var min_vel = self.parent.walk_min_speed
         self.name = "Walk"
 
-        # TODO: Give grace time with the b button released before change state
         if Input.is_action_pressed("b_button"):
+            self.b_released_frames = 0
+        else:
+            self.b_released_frames += 1
+
+
+        if self.b_released_frames < self.b_release_threshold:
             accel = self.parent.run_accel
             max_vel = self.parent.run_max_speed
             self.name = "Run"
-        elif self.parent.velocity.x > max_vel:
+        elif self.parent.velocity.x > max_vel and !self.change_direction:
             accel = self.parent.run_deaccel
             max_vel = self.parent.velocity.x
+            input_velocity.x = self.last_direction
+        elif input_velocity.x == 0:
+            accel = self.parent.run_deaccel
+            min_vel = 0
 
-        var velocity = self.calculate_velocity(
-            self.parent.velocity,
-            self.parent.walk_min_speed,
-            max_vel,
-            accel,
-            delta
-        )
+        # TODO: Avoid skid if the player is stuck in a wall
+        if not self.change_direction:
+            var x = self.calculate_x_velocity(
+                self.parent.velocity,
+                min_vel,
+                max_vel,
+                accel,
+                delta
+            )
 
-        if velocity.x != 0:
-            self.parent.sprite.flip_h = velocity.x < 0
-            self.parent.body.move_and_slide(velocity, UP_NORMAL)
-            self.parent.velocity = velocity
+            if input_velocity.x == 0:
+                input_velocity.x = self.last_direction * x
+            elif input_velocity.x != self.last_direction:
+                self.change_direction = true
+                self.parent.animation_player.current_animation = "Skid"
+                self.locked_velocity = x
+                self.new_direction = locked_velocity
+            else:
+                input_velocity.x *= x
+
+        elif self.new_direction > -self.locked_velocity:
+            self.new_direction += self.parent.skid_turn * delta
+            input_velocity.x = self.last_direction * clamp(
+                self.new_direction,
+                -self.locked_velocity,
+                self.locked_velocity
+            )
+
+            if sign(input_velocity.x) != self.last_direction:
+                self.parent.animation_player.current_animation = "Walk"
+
         else:
+            self.last_direction = input_velocity.x
+            self.change_direction = false
+            self.locked_velocity = 0
+            self.new_direction = 0
+
+            var x = self.calculate_x_velocity(
+                self.parent.velocity,
+                min_vel,
+                max_vel,
+                accel,
+                delta
+            )
+
+            input_velocity.x *= x
+            if input_velocity.x == 0:
+                self.parent.change_state(self.parent.idle_state)
+                self.parent.velocity = input_velocity
+                return
+
+        self.parent.sprite.flip_h = input_velocity.x < 0
+        self.parent.body.move_and_slide(input_velocity, UP_NORMAL)
+        self.parent.velocity = input_velocity
+
+        if input_velocity.x == 0 and !self.change_direction:
             self.parent.change_state(self.parent.idle_state)
             return
 
         if not self.parent.is_grounded():
             return self.parent.change_state(self.parent.fall_state)
 
-        if velocity.x < self.parent.walk_max_speed:
-            lapsed_time += delta
 
     func jump():
         if Input.is_action_just_pressed("a_button"):
@@ -222,24 +287,13 @@ class Move extends State:
         else:
             return false
 
-    func calculate_velocity(current_velocity, min_velocity, max_velocity, acceleration, time_delta):
-        var velocity = self.parent.get_input_velocity()
-        velocity.y = self.parent.calculate_y_velocity(time_delta)
 
-        if velocity.x != 0:
-            velocity.x *= clamp(
-                abs(current_velocity.x) + acceleration * time_delta,
-                min_velocity,
-                max_velocity
-            )
-
-            return velocity
-        else:
-            return velocity
-
-        if not self.parent.is_grounded():
-            return self.parent.change_state(self.parent.fall_state)
-
+    func calculate_x_velocity(current_velocity, min_velocity, max_velocity, acceleration, time_delta):
+        return clamp(
+            abs(current_velocity.x) + acceleration * time_delta,
+            min_velocity,
+            max_velocity
+        )
 
 
 class Jump extends State:
@@ -324,6 +378,7 @@ class Jump extends State:
             return self.parent.change_state(self.previous)
 
         var collision = self.parent.body.move_and_collide(velocity * delta)
+        self.parent.velocity = velocity
         if collision:
             var object = collision.collider.get_parent()
 
