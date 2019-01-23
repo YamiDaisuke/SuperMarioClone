@@ -86,7 +86,7 @@ extents = Vector2( 25.0552, 15.3782 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -103,6 +103,9 @@ walk_max_speed = 375
 walk_accel = 956.25
 run_max_speed = 615
 run_accel = 1012.5
+run_deaccel = -731.25
+skid_deaccel = -1462.5
+skid_turn = 8100
 idle_min_jump_distance = Vector2( 0, 1.2 )
 idle_max_jump_distance = Vector2( 3, 4.1 )
 walk_min_jump_distance = Vector2( 2, 1.4 )
@@ -115,7 +118,6 @@ stomp_fx = ExtResource( 3 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 46
@@ -124,7 +126,6 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
-editor/display_folded = true
 texture = SubResource( 1 )
 vframes = 4
 hframes = 4
