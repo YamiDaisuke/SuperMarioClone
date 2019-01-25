@@ -8,6 +8,8 @@ export (bool) var debug = false
 
 export (float) var gravity = 1200.0
 
+var final_y_velocity = 64800.0
+
 export (float) var walk_min_speed = 17.8125
 export (float) var walk_max_speed = 375
 export (float) var walk_accel = 956.25
@@ -102,7 +104,12 @@ func calculate_y_velocity(delta):
         y_velocity = 0
         return 0
     else:
-        y_velocity += self.gravity * delta
+        var newVel = y_velocity + self.gravity * delta
+        y_velocity = clamp(
+            newVel,
+            0,
+            self.final_y_velocity
+        )
         return y_velocity
 
 
@@ -375,7 +382,11 @@ class Jump extends State:
             self.velocity.y = target_jump_velocity.y + self.parent.gravity * total_time
         elif self.total_time > 0:
             self.velocity.y = self.parent.gravity
-            return self.parent.change_state(self.previous)
+
+            if input_velocity.x != 0:
+                self.parent.change_state(self.parent.walk_state)
+            else:
+                self.parent.change_state(self.parent.idle_state)
 
         var collision = self.parent.body.move_and_collide(velocity * delta)
         self.parent.velocity = velocity
@@ -432,7 +443,8 @@ class Fall extends State:
             self.parent.sprite.flip_h = velocity.x < 0
 
         var x_movement_allowed = max(self.x_move_time / self.x_move_threshold, 0)
-        velocity.x *= x_movement_allowed
+        # velocity.x *= x_movement_allowed
+        velocity.x = self.parent.velocity.x * x_movement_allowed
         self.parent.body.move_and_slide(velocity, UP_NORMAL)
 
         if self.parent.is_grounded():

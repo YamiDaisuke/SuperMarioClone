@@ -70,7 +70,7 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 
 resource_name = "Skid"
 length = 1.0
@@ -89,18 +89,18 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 25.007
 height = 12.8267
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 25.0552, 15.3782 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 615.388 )
@@ -160,14 +160,14 @@ anims/Die = SubResource( 2 )
 anims/Idle = ExtResource( 5 )
 anims/Jump = SubResource( 3 )
 anims/PoleSlide = SubResource( 4 )
-anims/Skid = SubResource( 8 )
+anims/Skid = SubResource( 5 )
 anims/Walk = ExtResource( 6 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="2"]
 
@@ -198,7 +198,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Material", "Offset", "
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="KinematicBody2D" index="3"]
 
 position = Vector2( -0.0566943, 16.5662 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Limit" type="StaticBody2D" parent="." index="1"]
 
@@ -215,7 +215,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" index="0"]
 
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 
