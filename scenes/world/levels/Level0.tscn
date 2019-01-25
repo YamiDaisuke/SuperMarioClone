@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/world/levels/Level0.gd" type="Script" id=1]
 [ext_resource path="res://spritesheets/world/clouds_sea.png" type="Texture" id=2]
@@ -11,8 +11,9 @@
 [ext_resource path="res://scenes/world/items/rewards/CoinReward.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/world/items/Brick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/world/platforms/Pipe.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/world/items/rewards/MultiCoinReward.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/Goomba.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -24,7 +25,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Level1-1" type="Node"]
+[node name="level" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -184,11 +185,7 @@ scale = Vector2( 16, 1.5 )
 
 [node name="Section1" type="Node2D" parent="." index="7"]
 
-editor/display_folded = true
-
 [node name="Boxes" type="Node2D" parent="Section1" index="0"]
-
-editor/display_folded = true
 
 [node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 8 )]
 
@@ -204,19 +201,19 @@ position = Vector2( 1376, 672 )
 
 position = Vector2( 1504, 672 )
 
+[node name="Reward" parent="Section1/Boxes/QuestionBox3" index="2" instance=ExtResource( 9 )]
+
 [node name="QuestionBox4" parent="Section1/Boxes" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 1440, 416 )
 
-[node name="Bricks" type="Node2D" parent="Section1" index="1"]
+[node name="Reward" parent="Section1/Boxes/QuestionBox4" index="2" instance=ExtResource( 9 )]
 
-editor/display_folded = true
+[node name="Bricks" type="Node2D" parent="Section1" index="1"]
 
 [node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 1312, 672 )
-
-[node name="Reward" parent="Section1/Bricks/Brick" index="2" instance=ExtResource( 9 )]
 
 [node name="Brick2" parent="Section1/Bricks" index="1" instance=ExtResource( 10 )]
 
@@ -227,8 +224,6 @@ position = Vector2( 1440, 672 )
 position = Vector2( 1568, 672 )
 
 [node name="Pipes" type="Node2D" parent="Section1" index="2"]
-
-editor/display_folded = true
 
 [node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 11 )]
 
@@ -300,7 +295,6 @@ position = Vector2( 448, -192 )
 
 [node name="Section3" type="Node2D" parent="." index="9"]
 
-editor/display_folded = true
 position = Vector2( 5792, 864 )
 
 [node name="Brick" parent="Section3" index="0" instance=ExtResource( 10 )]
@@ -318,6 +312,8 @@ position = Vector2( 192, -448 )
 [node name="Brick4" parent="Section3" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 256, -192 )
+
+[node name="Reward" parent="Section3/Brick4" index="2" instance=ExtResource( 12 )]
 
 [node name="Brick5" parent="Section3" index="4" instance=ExtResource( 10 )]
 
@@ -363,17 +359,25 @@ position = Vector2( 2496, -192 )
 
 position = Vector2( 256, -448 )
 
+[node name="Reward" parent="Section3/QuestionBox" index="2" instance=ExtResource( 9 )]
+
 [node name="QuestionBox2" parent="Section3" index="15" instance=ExtResource( 8 )]
 
 position = Vector2( 1024, -192 )
+
+[node name="Reward" parent="Section3/QuestionBox2" index="2" instance=ExtResource( 9 )]
 
 [node name="QuestionBox3" parent="Section3" index="16" instance=ExtResource( 8 )]
 
 position = Vector2( 1216, -192 )
 
+[node name="Reward" parent="Section3/QuestionBox3" index="2" instance=ExtResource( 9 )]
+
 [node name="QuestionBox4" parent="Section3" index="17" instance=ExtResource( 8 )]
 
 position = Vector2( 1408, -192 )
+
+[node name="Reward" parent="Section3/QuestionBox4" index="2" instance=ExtResource( 9 )]
 
 [node name="QuestionBox5" parent="Section3" index="18" instance=ExtResource( 8 )]
 
@@ -383,13 +387,16 @@ position = Vector2( 1216, -448 )
 
 position = Vector2( 2432, -448 )
 
+[node name="Reward" parent="Section3/QuestionBox6" index="2" instance=ExtResource( 9 )]
+
 [node name="QuestionBox7" parent="Section3" index="20" instance=ExtResource( 8 )]
 
 position = Vector2( 2496, -448 )
 
+[node name="Reward" parent="Section3/QuestionBox7" index="2" instance=ExtResource( 9 )]
+
 [node name="Section4" type="Node2D" parent="." index="10"]
 
-editor/display_folded = true
 position = Vector2( 10176, 832 )
 
 [node name="Pipe" parent="Section4" index="0" instance=ExtResource( 11 )]
@@ -416,13 +423,81 @@ position = Vector2( 736, -160 )
 
 position = Vector2( 672, -160 )
 
-[node name="Goomba" parent="." index="11" instance=ExtResource( 12 )]
+[node name="Reward" parent="Section4/QuestionBox" index="2" instance=ExtResource( 9 )]
 
-position = Vector2( 2112, 864 )
+[node name="Goomba" parent="." index="11" instance=ExtResource( 13 )]
+
+position = Vector2( 2624, 864 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Player" parent="." index="12" instance=ExtResource( 13 )]
+[node name="Goomba3" parent="." index="12" instance=ExtResource( 13 )]
 
-position = Vector2( 320, 864 )
+position = Vector2( 3392, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba4" parent="." index="13" instance=ExtResource( 13 )]
+
+position = Vector2( 3488, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba5" parent="." index="14" instance=ExtResource( 13 )]
+
+position = Vector2( 5088, 544 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba6" parent="." index="15" instance=ExtResource( 13 )]
+
+position = Vector2( 5280, 352 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba7" parent="." index="16" instance=ExtResource( 13 )]
+
+position = Vector2( 6112, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba8" parent="." index="17" instance=ExtResource( 13 )]
+
+position = Vector2( 6208, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba9" parent="." index="18" instance=ExtResource( 13 )]
+
+position = Vector2( 7872, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba10" parent="." index="19" instance=ExtResource( 13 )]
+
+position = Vector2( 7968, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba11" parent="." index="20" instance=ExtResource( 13 )]
+
+position = Vector2( 8096, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba12" parent="." index="21" instance=ExtResource( 13 )]
+
+position = Vector2( 8192, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba13" parent="." index="22" instance=ExtResource( 13 )]
+
+position = Vector2( 11040, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba14" parent="." index="23" instance=ExtResource( 13 )]
+
+position = Vector2( 11136, 864 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Goomba2" parent="." index="24" instance=ExtResource( 13 )]
+
+position = Vector2( 1504, 512 )
+_sections_unfolded = [ "Transform" ]
+trigger_distance = 384.0
+
+[node name="Player" parent="." index="25" instance=ExtResource( 14 )]
+
+position = Vector2( 1024, 864 )
 
 
