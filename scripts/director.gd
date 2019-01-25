@@ -58,7 +58,7 @@ func _ready():
     l2.bg_audio = "res://sounds/bg/overworld.mp3"
 
     levels.append(l1)
-    levels.append(l2)
+    # levels.append(l2)
 
     timer.connect("timeout",self,"_on_timer_timeout")
     timer.wait_time = 1
