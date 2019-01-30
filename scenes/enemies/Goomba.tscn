@@ -98,23 +98,23 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 512, 512 )
 
-[node name="Goomba" type="Node2D" index="0" groups=[
+[node name="Goomba" type="Node2D" groups=[
 "enemies",
 ]]
 
 script = ExtResource( 1 )
 direction = -1
-trigger_distance = 1152
-walk_speed = Vector2( 150, 0 )
+trigger_distance = 512.0
+walk_speed = Vector2( 150, 600 )
 stomp_kickback = Vector2( 2, 1.4 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
 input_pickable = false
 collision_layer = 2
-collision_mask = 1
+collision_mask = 35
 collision/safe_margin = 0.08
 _sections_unfolded = [ "Collision", "Pickable", "collision" ]
 
@@ -174,7 +174,6 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="Trigger" type="Area2D" parent="." index="1"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
