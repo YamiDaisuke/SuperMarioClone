@@ -15,7 +15,7 @@ content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
-[node name="StartScreen" type="CanvasLayer" index="0"]
+[node name="StartScreen" type="CanvasLayer"]
 
 layer = 8
 offset = Vector2( 0, 0 )
