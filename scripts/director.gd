@@ -22,7 +22,7 @@ onready var timer = Timer.new()
 
 var levels = []
 var lives = 3
-var score = 4540 setget _set_score
+var score = 0 setget _set_score
 var coins = 0 setget _set_coins
 var player_status
 
