@@ -117,6 +117,7 @@ __meta__ = {
 
 [node name="Half2" type="TileMap" parent="Castle" index="1"]
 
+z_index = 10
 mode = 0
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 64, 64 )
@@ -134,7 +135,7 @@ collision_mask = 0
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( -196608, 11, 0, -131072, 14, 0, -65536, 44, 0, -65535, 11, 0, 0, 13, 0, 1, 13, 0, 65536, 13, 0, 65537, 13, 0 )
-_sections_unfolded = [ "Collision", "Occluder" ]
+_sections_unfolded = [ "Collision", "Occluder", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -187,6 +188,8 @@ scale = Vector2( 16, 1.5 )
 
 [node name="Boxes" type="Node2D" parent="Section1" index="0"]
 
+editor/display_folded = true
+
 [node name="QuestionBox" parent="Section1/Boxes" index="0" instance=ExtResource( 8 )]
 
 position = Vector2( 1056, 672 )
@@ -211,6 +214,8 @@ position = Vector2( 1440, 416 )
 
 [node name="Bricks" type="Node2D" parent="Section1" index="1"]
 
+editor/display_folded = true
+
 [node name="Brick" parent="Section1/Bricks" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 1312, 672 )
@@ -224,6 +229,8 @@ position = Vector2( 1440, 672 )
 position = Vector2( 1568, 672 )
 
 [node name="Pipes" type="Node2D" parent="Section1" index="2"]
+
+editor/display_folded = true
 
 [node name="Pipe1" parent="Section1/Pipes" index="0" instance=ExtResource( 11 )]
 
@@ -295,6 +302,7 @@ position = Vector2( 448, -192 )
 
 [node name="Section3" type="Node2D" parent="." index="9"]
 
+editor/display_folded = true
 position = Vector2( 5792, 864 )
 
 [node name="Brick" parent="Section3" index="0" instance=ExtResource( 10 )]
@@ -397,6 +405,7 @@ position = Vector2( 2496, -448 )
 
 [node name="Section4" type="Node2D" parent="." index="10"]
 
+editor/display_folded = true
 position = Vector2( 10176, 832 )
 
 [node name="Pipe" parent="Section4" index="0" instance=ExtResource( 11 )]
@@ -492,12 +501,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Goomba2" parent="." index="24" instance=ExtResource( 13 )]
 
-position = Vector2( 1504, 512 )
+position = Vector2( 1472, 864 )
 _sections_unfolded = [ "Transform" ]
-trigger_distance = 384.0
 
 [node name="Player" parent="." index="25" instance=ExtResource( 14 )]
 
-position = Vector2( 1024, 864 )
+position = Vector2( 352, 864 )
 
 
